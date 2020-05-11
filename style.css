@@ -1,0 +1,84 @@
+html {
+  box-sizing: border-box;
+}
+
+.canvas {
+  z-index: 0;
+}
+
+body,html {
+  font-size: 10px;
+  width:100vw;
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  overflow: hidden;
+
+}
+
+.audio-player {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.keys-container {
+  position: absolute;
+  top: 20%;
+  left: 9%;
+  display: flex;
+  flex: 1;
+  /* min-height: 100vh; */
+  height: 300px;
+  width: 1600px;  
+  align-items: center;
+  justify-content: space-evenly;
+  /* padding: 0px 500px 0px 500px; */
+  /* flex-wrap: wrap; */
+  z-index: 100;
+}
+
+.keys {
+  transform: scale(0.5);
+  display: flex;
+  padding-top: 2100px;
+  /* height: 300px;
+  width: 1200px; */
+
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.key {
+  height: 80px;
+  border: .4rem solid black;
+  border-radius: .5rem;
+  margin: 1rem;
+  font-size: 1.5rem;
+  padding: 1rem .5rem;
+  margin: 20px 25px 20px 25px;
+  transition: all .07s ease;
+  width: 10rem;
+  text-align: center;
+  color: white;
+  background: rgba(0,0,0,0.4);
+  text-shadow: 0 0 .5rem black;
+}
+
+.playing {
+  transform: scale(1.1);
+  border-color: #ffc600;
+  box-shadow: 0 0 1rem #ffc600;
+}
+
+kbd {
+  display: block;
+  font-size: 4rem;
+}
+
+.sound {
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  letter-spacing: .1rem;
+  color: #ffc600;
+}

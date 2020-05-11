@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JS-Sampler</title>
+  <link rel="stylesheet" href="style.css">
+
+  <script src='javascripts/three/three.js'></script>
+  <script src='javascripts/three/OrbitControls.js'></script>
+  <!-- <script src='javascripts/three/three.min.js'></script> -->
+</head>
+
+<body>
+
+  
+
+  <audio class='audio-player' controls>
+    <source src="audio/starry-eyed/starry-eyed-nodrums.wav" type="audio/wav">
+  Your browser does not support the audio element.
+  </audio>
+
+  <div class="keys-container">
+    <div class="keys">
+
+      <div data-key="65" class="key">
+        <kbd>A</kbd>
+        <span class="sound">tick</span>
+      </div>
+      <div data-key="83" class="key">
+        <kbd>S</kbd>
+        <span class="sound">hat-crash</span>
+      </div>
+      <div data-key="68" class="key">
+        <kbd>D</kbd>
+        <span class="sound">kick-pitch</span>
+      </div>
+      <div data-key="70" class="key">
+        <kbd>F</kbd>
+        <span class="sound">snare-pitch</span>
+      </div>
+      <div data-key="71" class="key">
+        <kbd>G</kbd>
+        <span class="sound">hat-crash</span>
+      </div>
+      <div data-key="72" class="key">
+        <kbd>H</kbd>
+        <span class="sound">big-kick</span>
+      </div>
+      <div data-key="74" class="key">
+        <kbd>J</kbd>
+        <span class="sound">cla-snare</span>
+      </div>
+      <div data-key="75" class="key">
+        <kbd>K</kbd>
+        <span class="sound">tom-double</span>
+      </div>
+      <div data-key="76" class="key">
+        <kbd>L</kbd>
+        <span class="sound">tom-trill</span>
+      </div>
+
+
+
+      <div data-key="90" class="key">
+        <kbd>Z</kbd>
+        <span class="sound">kick-short</span>
+      </div>
+      <div data-key="88" class="key">
+        <kbd>X</kbd>
+        <span class="sound">clap</span>
+      </div>
+      <div data-key="67" class="key">
+        <kbd>C</kbd>
+        <span class="sound">tom-trill-sparkle</span>
+      </div>
+      <div data-key="86" class="key">
+        <kbd>V</kbd>
+        <span class="sound">snap1</span>
+      </div>
+      <div data-key="66" class="key">
+        <kbd>B</kbd>
+        <span class="sound">snap2</span>
+      </div>
+      <div data-key="78" class="key">
+        <kbd>N</kbd>
+        <span class="sound">snap3</span>
+      </div>
+
+      <div data-key="" class="key">
+        <kbd>M</kbd>
+        <span class="sound">#</span>
+      </div>
+      <div data-key="" class="key">
+        <kbd>,</kbd>
+        <span class="sound">#</span>
+      </div>
+
+
+  </div>
+
+
+  </div>
+
+  <audio data-key="65" src="audio/starry-eyed/drums/tick.wav"></audio>
+  <audio data-key="83" src="audio/starry-eyed/drums/hat-crash.wav"></audio>
+  <audio data-key="68" src="audio/starry-eyed/drums/kick-pitch.wav"></audio>
+  <audio data-key="70" src="audio/starry-eyed/drums/snare-pitch.wav"></audio>
+  <audio data-key="71" src="audio/starry-eyed/drums/hat-crash.wav"></audio>
+  <audio data-key="72" src="audio/starry-eyed/drums/big-kick.wav"></audio>
+  <audio data-key="74" src="audio/starry-eyed/drums/clap-snare.wav"></audio>
+  <audio data-key="75" src="audio/starry-eyed/drums/tom-double.wav"></audio>
+  <audio data-key="76" src="audio/starry-eyed/drums/tom-trill.wav"></audio>
+
+
+  <audio data-key="90" src="audio/starry-eyed/drums/kick-short.wav"></audio>
+  <audio data-key="88" src="audio/starry-eyed/drums/clap.wav"></audio>
+  <audio data-key="67" src="audio/starry-eyed/drums/tom-trill-sparkle.wav"></audio>
+  <audio data-key="86" src="audio/starry-eyed/drums/snap1.wav"></audio>
+  <audio data-key="66" src="audio/starry-eyed/drums/snap2.wav"></audio>
+  <audio data-key="78" src="audio/starry-eyed/drums/snap3.wav"></audio>
+
+
+
+  <!-- Audio play scripts -->
+<script>
+  function removeTransition(e) {
+    if (e.propertyName !== 'transform') return;
+    e.target.classList.remove('playing');
+  }
+
+  function playSound(e) {
+    const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+    const key = document.querySelector(`div[data-key="${e.keyCode}"]`);
+    if (!audio) return;
+
+    key.classList.add('playing');
+    audio.currentTime = 0;
+    audio.play();
+  }
+
+  const keys = Array.from(document.querySelectorAll('.key'));
+  keys.forEach(key => key.addEventListener('transitionend', removeTransition));
+  window.addEventListener('keydown', playSound);
+</script>
+
+<!-- <script  src="/javascripts/starfield.js"></script> -->
+
+
+<div class='canvas'>
+  <script type='module' src='/javascripts/skybox.js'></script>
+  <!-- <script src='/javascripts/animation.js'></script> -->
+  </div>
+
+</body>
+</html>
