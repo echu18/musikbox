@@ -1,5 +1,5 @@
 import midiData from '../js-test.js'
-import {createController} from './controller.js'
+import {createController, collidable} from './controller.js'
 
 
 var midiNotes = midiData.tracks[0].notes;
@@ -37,21 +37,21 @@ function init() {
 
 
   // Add starfield
-  // var starGeo = new THREE.Geometry();
-  // for (let i = 0; i < 10000; i++) {
-  //   var vertex = new THREE.Vector3();
-  //   vertex.x = Math.random()*10000-5000;
-  //   vertex.y = Math.random()*10000-5000;
-  //   vertex.z = Math.random()*10000-5000;
-  //   starGeo.vertices.push(vertex);
-  // }
-  // starField = new THREE.PointCloud(starGeo, new THREE.PointCloudMaterial({
-  //   size: 0.1,
-  //   color: 0xffffff
-  //   })
-  // );
-  // scene.add(starField);
-  // starField.position.z = 100;
+  var starGeo = new THREE.Geometry();
+  for (let i = 0; i < 10000; i++) {
+    var vertex = new THREE.Vector3();
+    vertex.x = Math.random()*10000-5000;
+    vertex.y = Math.random()*10000-5000;
+    vertex.z = Math.random()*10000-5000;
+    starGeo.vertices.push(vertex);
+  }
+  starField = new THREE.PointCloud(starGeo, new THREE.PointCloudMaterial({
+    size: 0.1,
+    color: 0xffffff
+    })
+  );
+  scene.add(starField);
+  starField.position.z = 100;
 
 
 
@@ -130,6 +130,10 @@ function init() {
       let color;  // Switch statement will evaluate midiKey and choose color
 
       switch (midiKey) {
+        case 46:
+          color = new THREE.Color("hsl(8, 70%, 75%)");
+        case 47:
+          color = new THREE.Color("hsl(8, 70%, 75%)");
         case 48:
           color = new THREE.Color("hsl(8, 70%, 75%)");
           break;
@@ -186,8 +190,8 @@ function init() {
 
       var noteLength = 10 * durationTicks
 
-      var geometry = new THREE.BoxGeometry(50,50, noteLength);
-      var material = new THREE.MeshPhongMaterial({
+      var midiGeo = new THREE.BoxGeometry(50,50, noteLength);
+      var midiMat = new THREE.MeshPhongMaterial({
         ambient: 0x555555,
         color: 0x555555,
         specular: 0xffffff,
@@ -195,8 +199,8 @@ function init() {
         shininess: 50,
         shading: THREE.SmoothShading, wireframe: true
       })
-      cube = new THREE.Mesh(geometry, material);
-
+      cube = new THREE.Mesh(midiGeo, midiMat);
+      cube.name = midiKey
 
       var position = (54 - midiKey) * 150
       cube.position.x = position
@@ -278,26 +282,165 @@ window.addEventListener('resize', () => {
   function animate() {
     skybox.rotation.x -= 0.001;
     // skybox.rotation.y += 0.001;
-    // starField.rotation.x -= 0.001;
-    // starField.rotation.y -= 0.001;
-    // starField.rotation.z += 0.001;
+    starField.rotation.x -= 0.001;
+    starField.rotation.y -= 0.001;
+    starField.rotation.z += 0.001;
 
 
 
-    midiBlocks.forEach((block, i) => {
-
-      if (i ===0) {
+    for (let i=0; i < midiBlocks.length; i++) {
+      let block = midiBlocks[i]
+        if (i ===0) {
           scene.add(block)
           block.position.z -= 10
-      } else if ( i > 0) {
+        } else if ( i > 0) {
         setTimeout(function() {
           scene.add(block)
           block.position.z -= 10
         }, midiNotes[i-1].time * 1000)
       }
-    })
+        var originPoint = block.position.clone();
+        // var testReceptor = Object.values(collidable)[0].receptor
+  
+      var startPos = originPoint.z - block.geometry.parameters.depth/2
+      var endPos = originPoint.z + block.geometry.parameters.depth/2
+      var blockLength = block.geometry.parameters.depth
 
+        let overlap = false;
+
+        // while (startPos  <= (-2910 + 50)) {
+        //   if (collidable[block.name].active === true) overlap = true;
+
+        //   if (overlap) {
+        //     continue;
+        //   } else {
+        //     collidable[block.name].active = true
+        //   }
+        // } else if (originPoint.z + block.geometry.parameters.depth/2  === -2910 ) {
+        //     if (overlap) {
+        //       overlap = false;
+        //       continue;
+        //     } else {
+        //       collidable[block.name].active = false
+        //     }
+        // }
+        if (endPos  <= -2910 ) { 
+          if (!!overlap) {
+            overlap = false;
+            continue;
+          } else {
+            collidable[block.name].active = false
+          }
+          collidable[block.name].active = false
+        } else if (startPos <= (-2910 + 50) ) {
+          debugger
+
+          if (collidable[block.name].active === true) overlap = true;
+
+          if (overlap) {
+            continue;
+          } else {
+            collidable[block.name].active = true
+          }
+        } 
+
+
+        // Kind of works but isn't entirely accurate
+        // if (originPoint.z === (startPos + 100)) {
+        //   if (collidable[block.name].active = true) overlap = true;
+
+        //   if (overlap) {
+        //     continue;
+        //   } else {
+        //     collidable[block.name].active = true
+        //   }
+        // } else if (originPoint.z === endPos + 50) {
+        //     if (overlap) {
+        //       overlap = false;
+        //       continue;
+        //     } else {
+        //       collidable[block.name].active = false
+        //     }
+        // }
+  
+    }
+
+
+    // midiBlocks.forEach((block, i) => {
+    //   // Moves midi blocks toward user - synced by time
+    //   if (i ===0) {
+    //       scene.add(block)
+    //       block.position.z -= 10
+    //   } else if ( i > 0) {
+    //     setTimeout(function() {
+    //       scene.add(block)
+    //       block.position.z -= 10
+    //     }, midiNotes[i-1].time * 1000)
+    //   }
+
+
+      // var originPoint = block.position.clone();
+      // // var testReceptor = Object.values(collidable)[0].receptor
+
+      // if (originPoint.z === (-2910 + block.geometry.parameters.depth/2)) {
+      //       collidable[block.name].active = true
+      // } else if (originPoint.z === (-2910 - block.geometry.parameters.depth/2)) {
+      //       collidable[block.name].active = false
+      // }
+
+      // var pass = 0
+      // for (var vertexIndex = 0; vertexIndex < block.geometry.vertices.length; vertexIndex++)
+      // {		
+      //   var localVertex = block.geometry.vertices[vertexIndex].clone();
+      //   var globalVertex = localVertex.applyMatrix4( block.matrix );
+      //   var directionVector = globalVertex.sub( testReceptor.position );
+      //   debugger
+      //   var ray = new THREE.Raycaster( originPoint, directionVector.clone().normalize() );
+      //   var collisionResults = ray.intersectObject( collidable[block.name].receptor);
+
+      //   if ( collisionResults.length > 0 && collisionResults[0].distance < directionVector.length()) {
+      //       // alert('active')
+      //       // if (pass === 0) {
+      //       //   if (collidable[block.name].active === false) {
+      //       //     collidable[block.name].active = true
+      //       //     pass += 1
+      //       //   } else if (pass === 8) {
+      //       //     collidable[block.name].active = false
+      //       //     pass = 0
+      //       //   }
+      //       // }
+
+
+      //         // if (collidable[block.name].active === false) {
+      //         //   collidable[block.name].active = true
+      //         //   console.log('hi')
+      //         // } else {
+      //         // collidable[block.name].active = false
+      //         // pass = 0
+            
+
+      //       //   collidable[block.name].active = true // Need to flip receptor to true - but how to tell which receptor is being triggered?
+      //       //   return;
+      //       // } else {
+      //       //   collidable[block.name].active = false
+      //       // }
+      //   }
+      // }	
+    // })
+    
+  
     renderer.render(scene,camera);
     requestAnimationFrame(animate);
   }
 init();
+
+
+
+
+
+  // if (collidable[block.name].active === true) {
+          //   collidable[block.name].active = false
+          // } else {
+          //   collidable[block.name].active = true
+          // }
+        // }
