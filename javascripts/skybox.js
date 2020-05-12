@@ -14,10 +14,12 @@ function init() {
   // camera.position.set(-900,-200,-900);
   // camera.position.set(-2500,1200, 0); // left side is front (old pos)
   // camera.position.set(0,1200, -2200); // correct front
-  camera.position.set(0,1200, -4200); // move camera further back
+  camera.position.set(0,1800, -4200); // move camera further back
+  // camera.position.set(0,2500, -5000); // move camera further back
 
   camera.up = new THREE.Vector3(0,1,0);
-  camera.lookAt(new THREE.Vector3(100,700,100));
+  // camera.lookAt(new THREE.Vector3(100,700,100));
+  camera.lookAt(new THREE.Vector3(100,0,1000));
 
   renderer = new THREE.WebGLRenderer({antialias:true});
   renderer.setSize(window.innerWidth,window.innerHeight);
@@ -35,21 +37,21 @@ function init() {
 
 
   // Add starfield
-  var geometry = new THREE.Geometry();
-  for (let i = 0; i < 10000; i++) {
-    var vertex = new THREE.Vector3();
-    vertex.x = Math.random()*10000-5000;
-    vertex.y = Math.random()*10000-5000;
-    vertex.z = Math.random()*10000-5000;
-    geometry.vertices.push(vertex);
-  }
-  starField = new THREE.PointCloud(geometry, new THREE.PointCloudMaterial({
-    size: 0.1,
-    color: 0xffffff
-    })
-  );
-  scene.add(starField);
-  starField.position.z = 100;
+  // var starGeo = new THREE.Geometry();
+  // for (let i = 0; i < 10000; i++) {
+  //   var vertex = new THREE.Vector3();
+  //   vertex.x = Math.random()*10000-5000;
+  //   vertex.y = Math.random()*10000-5000;
+  //   vertex.z = Math.random()*10000-5000;
+  //   starGeo.vertices.push(vertex);
+  // }
+  // starField = new THREE.PointCloud(starGeo, new THREE.PointCloudMaterial({
+  //   size: 0.1,
+  //   color: 0xffffff
+  //   })
+  // );
+  // scene.add(starField);
+  // starField.position.z = 100;
 
 
 
@@ -191,14 +193,14 @@ function init() {
         specular: 0xffffff,
         emissive: color,
         shininess: 50,
-        shading: THREE.SmoothShading
+        shading: THREE.SmoothShading, wireframe: true
       })
       cube = new THREE.Mesh(geometry, material);
 
 
-      var position = (54 - midiKey) * 110
+      var position = (54 - midiKey) * 150
       cube.position.x = position
-      cube.position.z= 1000; // Position z to make cube front and back
+      cube.position.z= 3000; // Position z to make cube front and back
       midiBlocks.push(cube)
     }
 
@@ -212,7 +214,7 @@ function init() {
     // Grid
 
   // var size = 2700;
-  // var divisions = 9;
+  // var divisions = 17;
   // var colorGrid = new THREE.Color("hsl(260, 81%, 86%)")
   
   // var gridHelper = new THREE.GridHelper(size, divisions, colorGrid  );
@@ -276,8 +278,8 @@ window.addEventListener('resize', () => {
   function animate() {
     skybox.rotation.x -= 0.001;
     // skybox.rotation.y += 0.001;
-    starField.rotation.x -= 0.001;
-    starField.rotation.y -= 0.001;
+    // starField.rotation.x -= 0.001;
+    // starField.rotation.y -= 0.001;
     // starField.rotation.z += 0.001;
 
 
@@ -291,7 +293,7 @@ window.addEventListener('resize', () => {
         setTimeout(function() {
           scene.add(block)
           block.position.z -= 10
-        }, midiNotes[i].time * 1000)
+        }, midiNotes[i-1].time * 1000)
       }
     })
 
