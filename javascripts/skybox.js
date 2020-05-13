@@ -2,15 +2,7 @@ import midiData from '../starry-drums-test1.js'
 import {createController, collidable} from './controller.js'
 
 
-var worker = new Worker('test_worker.js');
-worker.addEventListener('message', function(msg) {
-  console.log('UI thread received result:', msg.data.result);
-});
 
-worker.postMessage({
-  cmd: 'say_something',
-  other_var: 'foo1234'
-});
 
 
 
@@ -19,7 +11,7 @@ var midiNotes = midiData.tracks[0].notes;
 var tempo =  midiData.header.ppq / 10
 
 
-let scene, camera, renderer, skybox, starField, cube, midiBlocks = [], btns= new Object();
+let scene, camera, renderer, skybox, starField, cube, midiBlocks = [];
 
 function init() {
   scene = new THREE.Scene();
@@ -73,20 +65,20 @@ function init() {
 
   
   let materialArray = [];
-  // let texture_ft = new THREE.TextureLoader().load( 'images/ellie/posx.jpg');
-  // let texture_bk = new THREE.TextureLoader().load( 'images/ellie/negx.jpg');
-  // let texture_up = new THREE.TextureLoader().load( 'images/ellie/negy.jpg');
-  // let texture_dn = new THREE.TextureLoader().load( 'images/ellie/posy.jpg');
-  // let texture_rt = new THREE.TextureLoader().load( 'images/ellie/posz.jpg');
-  // let texture_lf = new THREE.TextureLoader().load( 'images/ellie/negz.jpg');
+  let texture_ft = new THREE.TextureLoader().load( 'images/ellie/posx.jpg');
+  let texture_bk = new THREE.TextureLoader().load( 'images/ellie/negx.jpg');
+  let texture_up = new THREE.TextureLoader().load( 'images/ellie/negy.jpg');
+  let texture_dn = new THREE.TextureLoader().load( 'images/ellie/posy.jpg');
+  let texture_rt = new THREE.TextureLoader().load( 'images/ellie/posz.jpg');
+  let texture_lf = new THREE.TextureLoader().load( 'images/ellie/negz.jpg');
 
 
-  let texture_ft = new THREE.TextureLoader().load( 'images/galaxy/galaxy-negy.jpg');
-  let texture_bk = new THREE.TextureLoader().load( 'images/galaxy/galaxy-negz.jpg');
-  let texture_up = new THREE.TextureLoader().load( 'images/galaxy/galaxy-posy.jpg');
-  let texture_dn = new THREE.TextureLoader().load( 'images/galaxy/galaxy-posz.jpg');
-  let texture_rt = new THREE.TextureLoader().load( 'images/galaxy/galaxy-negy.jpg');
-  let texture_lf = new THREE.TextureLoader().load( 'images/galaxy/galaxy-posx.jpg');
+  // let texture_ft = new THREE.TextureLoader().load( 'images/galaxy/galaxy-negy.jpg');
+  // let texture_bk = new THREE.TextureLoader().load( 'images/galaxy/galaxy-negz.jpg');
+  // let texture_up = new THREE.TextureLoader().load( 'images/galaxy/galaxy-posy.jpg');
+  // let texture_dn = new THREE.TextureLoader().load( 'images/galaxy/galaxy-posz.jpg');
+  // let texture_rt = new THREE.TextureLoader().load( 'images/galaxy/galaxy-negy.jpg');
+  // let texture_lf = new THREE.TextureLoader().load( 'images/galaxy/galaxy-posx.jpg');
         
   materialArray.push(new THREE.MeshBasicMaterial( { map: texture_ft }));
   materialArray.push(new THREE.MeshBasicMaterial( { map: texture_bk }));
@@ -219,6 +211,7 @@ function init() {
 
       var position = (44 - midiKey) * 150
       cube.position.x = position
+      // cube.position.z= 1500; // Position z to make cube front and back
       cube.position.z= 1500; // Position z to make cube front and back
       midiBlocks.push(cube)
     }
@@ -252,11 +245,8 @@ function init() {
   document.getElementById('start-button').addEventListener('click', 
   function() {
     animate()
-    setTimeout(function(){startMusic()}, 7700);
+    setTimeout(function(){startMusic()}, 7750);
   })
-
-  WebGlRenderer.compile({scene: scene, camera: camera})
-
 }
   
 
@@ -277,11 +267,11 @@ window.addEventListener('resize', () => {
 
 
   function animate() {
-    skybox.rotation.x -= 0.001;
+    skybox.rotation.x -= 0.0008;
     // skybox.rotation.y += 0.001;
-    starField.rotation.x -= 0.001;
-    starField.rotation.y -= 0.001;
-    starField.rotation.z += 0.001;
+    // starField.rotation.x -= 0.001;
+    // starField.rotation.y -= 0.001;
+    starField.rotation.z += 0.0008;
     
 
     for (let i=0; i < midiBlocks.length; i++) {
@@ -317,6 +307,7 @@ window.addEventListener('resize', () => {
           if (collidable[block.name].active === true) overlap = true;
 
           if (overlap) {
+            scene.remove(midiBlocks[i-1])
             continue;
           } else {
             collidable[block.name].active = true

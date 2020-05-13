@@ -25,23 +25,23 @@ export const collidable = new Object();
       // Chars
       var loader = new THREE.FontLoader();
       loader.load( './bebas.json', function ( font ) {
-        var titleTextGeo = new THREE.TextGeometry( 'Musikbox', {
-          font: font,
-          size: 600,
-          height: 100,
-          curveSegments: 12,
-          bevelEnabled: false,
-          bevelThickness: 10,
-          bevelSize: 8,
-          bevelOffset: 0,
-          bevelSegments: 5
-        } );
+        // var titleTextGeo = new THREE.TextGeometry( 'Musikbox', {
+        //   font: font,
+        //   size: 600,
+        //   height: 100,
+        //   curveSegments: 12,
+        //   bevelEnabled: false,
+        //   bevelThickness: 10,
+        //   bevelSize: 8,
+        //   bevelOffset: 0,
+        //   bevelSegments: 5
+        // } );
   
-        var titleText = new THREE.Mesh(titleTextGeo, new THREE.MeshPhongMaterial({color: new THREE.Color("hsl(185, 81%, 60%)"), specular: 0x555555, emissive: new THREE.Color("hsl(83, 81%, 51%)"), shininess: 100,
-        shading: THREE.flatShading}))
-        titleText.position.set(1200,50,3000)
-        titleText.rotation.set(0,-650.3,0)
-        scene.add(titleText)
+        // var titleText = new THREE.Mesh(titleTextGeo, new THREE.MeshPhongMaterial({color: new THREE.Color("hsl(185, 81%, 60%)"), specular: 0x555555, emissive: new THREE.Color("hsl(83, 81%, 51%)"), shininess: 100,
+        // shading: THREE.flatShading}))
+        // titleText.position.set(1200,50,3000)
+        // titleText.rotation.set(0,-650.3,0)
+        // scene.add(titleText)
 
 
         function btnText(char) {
