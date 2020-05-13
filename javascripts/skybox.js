@@ -65,20 +65,20 @@ function init() {
 
   
   let materialArray = [];
-  let texture_ft = new THREE.TextureLoader().load( 'images/ellie/posx.jpg');
-  let texture_bk = new THREE.TextureLoader().load( 'images/ellie/negx.jpg');
-  let texture_up = new THREE.TextureLoader().load( 'images/ellie/negy.jpg');
-  let texture_dn = new THREE.TextureLoader().load( 'images/ellie/posy.jpg');
-  let texture_rt = new THREE.TextureLoader().load( 'images/ellie/posz.jpg');
-  let texture_lf = new THREE.TextureLoader().load( 'images/ellie/negz.jpg');
+  // let texture_ft = new THREE.TextureLoader().load( 'images/ellie/posx.jpg');
+  // let texture_bk = new THREE.TextureLoader().load( 'images/ellie/negx.jpg');
+  // let texture_up = new THREE.TextureLoader().load( 'images/ellie/negy.jpg');
+  // let texture_dn = new THREE.TextureLoader().load( 'images/ellie/posy.jpg');
+  // let texture_rt = new THREE.TextureLoader().load( 'images/ellie/posz.jpg');
+  // let texture_lf = new THREE.TextureLoader().load( 'images/ellie/negz.jpg');
 
 
-  // let texture_ft = new THREE.TextureLoader().load( 'images/galaxy/galaxy-negy.jpg');
-  // let texture_bk = new THREE.TextureLoader().load( 'images/galaxy/galaxy-negz.jpg');
-  // let texture_up = new THREE.TextureLoader().load( 'images/galaxy/galaxy-posy.jpg');
-  // let texture_dn = new THREE.TextureLoader().load( 'images/galaxy/galaxy-posz.jpg');
-  // let texture_rt = new THREE.TextureLoader().load( 'images/galaxy/galaxy-negy.jpg');
-  // let texture_lf = new THREE.TextureLoader().load( 'images/galaxy/galaxy-posx.jpg');
+  let texture_ft = new THREE.TextureLoader().load( 'images/galaxy/galaxy-negy.jpg');
+  let texture_bk = new THREE.TextureLoader().load( 'images/galaxy/galaxy-negz.jpg');
+  let texture_up = new THREE.TextureLoader().load( 'images/galaxy/galaxy-posy.jpg');
+  let texture_dn = new THREE.TextureLoader().load( 'images/galaxy/galaxy-posz.jpg');
+  let texture_rt = new THREE.TextureLoader().load( 'images/galaxy/galaxy-negy.jpg');
+  let texture_lf = new THREE.TextureLoader().load( 'images/galaxy/galaxy-posx.jpg');
         
   materialArray.push(new THREE.MeshBasicMaterial( { map: texture_ft }));
   materialArray.push(new THREE.MeshBasicMaterial( { map: texture_bk }));
@@ -246,6 +246,7 @@ function init() {
   function() {
     animate()
     setTimeout(function(){startMusic()}, 7750);
+    // startMusic();
   })
 }
   
@@ -275,6 +276,7 @@ window.addEventListener('resize', () => {
     
 
     for (let i=0; i < midiBlocks.length; i++) {
+
       let block = midiBlocks[i]
       if (i ===0) {
         scene.add(block)
@@ -299,6 +301,7 @@ window.addEventListener('resize', () => {
             continue;
           } else {
             collidable[block.name].active = false
+            // midiBlocks = midiBlocks.slice(midiBlocks.indexOf(block), 1)
             scene.remove(block)
           }
           collidable[block.name].active = false
