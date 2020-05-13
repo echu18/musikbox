@@ -2,7 +2,16 @@ import midiData from '../starry-drums-test1.js'
 import {createController, collidable} from './controller.js'
 
 
-var worker = new Worker('task.js');
+var worker = new Worker('test_worker.js');
+worker.addEventListener('message', function(msg) {
+  console.log('UI thread received result:', msg.data.result);
+});
+
+worker.postMessage({
+  cmd: 'say_something',
+  other_var: 'foo1234'
+});
+
 
 
 
