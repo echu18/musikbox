@@ -239,7 +239,7 @@ export const collidable = new Object();
           var receptorA = new THREE.Mesh(receptorGeo, new THREE.MeshPhongMaterial( { emissive: new THREE.Color("hsl(303, 100%, 68%)"), wireframe:true,  specular: 0x555555, shininess: 100,
           shading: THREE.flatShading }));
           receptorA.position.set(1200,0,-2910);
-          collidable[46] = {receptor: receptorA, active: false};
+          collidable[36] = {receptor: receptorA, active: false};
       
       var btnS = new THREE.Mesh(btnGeometry, new THREE.MeshPhongMaterial({color: new THREE.Color("hsl(185, 81%, 60%)"), specular: 0x555555, shininess: 100,
       shading: THREE.flatShading}));
@@ -248,7 +248,7 @@ export const collidable = new Object();
           var receptorS = new THREE.Mesh(receptorGeo, new THREE.MeshPhongMaterial( { emissive: new THREE.Color("hsl(303, 100%, 68%)"), wireframe:true,  specular: 0x555555, shininess: 100,
           shading: THREE.flatShading }));
           receptorS.position.set(900,0,-2910);
-          collidable[48] =  {receptor: receptorS, active: false};
+          collidable[38] =  {receptor: receptorS, active: false};
 
       var btnD = new THREE.Mesh(btnGeometry, new THREE.MeshPhongMaterial({color: new THREE.Color("hsl(185, 81%, 60%)"), specular: 0x555555, shininess: 100,
       shading: THREE.flatShading}));
@@ -257,7 +257,7 @@ export const collidable = new Object();
           var receptorD = new THREE.Mesh(receptorGeo, new THREE.MeshPhongMaterial( { emissive: new THREE.Color("hsl(303, 100%, 68%)"), wireframe:true,  specular: 0x555555, shininess: 100,
           shading: THREE.flatShading }));
           receptorD.position.set(600,0,-2910);
-          collidable[50] = {receptor: receptorD, active: false};
+          collidable[40] = {receptor: receptorD, active: false};
 
       var btnF = new THREE.Mesh(new THREE.BoxGeometry( 140, 60, 100, 1, 1, 1 ), new THREE.MeshPhongMaterial({color: new THREE.Color("hsl(185, 81%, 60%)"), specular: 0x555555, shininess: 100,
       shading: THREE.flatShading}));
@@ -268,7 +268,7 @@ export const collidable = new Object();
           receptorF.name = 'french fry'
 
           receptorF.position.set(300,0,-2910);
-          collidable[52] = {receptor: receptorF, active: false};
+          collidable[42] = {receptor: receptorF, active: false};
 
       var btnG = new THREE.Mesh(btnGeometry, new THREE.MeshPhongMaterial({color: new THREE.Color("hsl(185, 81%, 60%)"), specular: 0x555555, shininess: 100,
       shading: THREE.flatShading}));
@@ -279,7 +279,7 @@ export const collidable = new Object();
           receptorG.name = 'chicken nugget'
 
           receptorG.position.set(0,0,-2910);
-          collidable[54] = {receptor: receptorG, active: false};
+          collidable[44] = {receptor: receptorG, active: false};
 
       var btnH = new THREE.Mesh(btnGeometry, new THREE.MeshPhongMaterial({color: new THREE.Color("hsl(185, 81%, 60%)"), specular: 0x555555, shininess: 100,
       shading: THREE.flatShading}));
@@ -288,7 +288,7 @@ export const collidable = new Object();
           var receptorH = new THREE.Mesh(receptorGeo, new THREE.MeshPhongMaterial( { emissive: new THREE.Color("hsl(303, 100%, 68%)"), wireframe:true,  specular: 0x555555, shininess: 100,
           shading: THREE.flatShading }));
           receptorH.position.set(-300,0,-2910);
-          collidable[56] = {receptor: receptorH, active: false};
+          collidable[46] = {receptor: receptorH, active: false};
 
       var btnJ = new THREE.Mesh(btnGeometry, new THREE.MeshPhongMaterial({color: new THREE.Color("hsl(185, 81%, 60%)"), specular: 0x555555, shininess: 100,
       shading: THREE.flatShading}));
@@ -297,7 +297,7 @@ export const collidable = new Object();
           var receptorJ = new THREE.Mesh(receptorGeo, new THREE.MeshPhongMaterial( { emissive: new THREE.Color("hsl(303, 100%, 68%)"), wireframe:true,  specular: 0x555555, shininess: 100,
           shading: THREE.flatShading }));
           receptorJ.position.set(-600,0,-2910);
-          collidable[58] = {receptor: receptorJ, active: false};
+          collidable[48] = {receptor: receptorJ, active: false};
 
       var btnK = new THREE.Mesh(btnGeometry, new THREE.MeshPhongMaterial({color: new THREE.Color("hsl(185, 81%, 60%)"), specular: 0x555555, shininess: 100,
       shading: THREE.flatShading}));
@@ -306,7 +306,7 @@ export const collidable = new Object();
           var receptorK = new THREE.Mesh(receptorGeo, new THREE.MeshPhongMaterial( { emissive: new THREE.Color("hsl(303, 100%, 68%)"), wireframe:true,  specular: 0x555555, shininess: 100,
           shading: THREE.flatShading }));
           receptorK.position.set(-900,0,-2910);
-          collidable[60] = {receptor: receptorK, active: false};
+          collidable[50] = {receptor: receptorK, active: false};
 
       var btnL = new THREE.Mesh(btnGeometry, new THREE.MeshPhongMaterial({color: new THREE.Color("hsl(185, 81%, 60%)"), specular: 0x555555, shininess: 100,
       shading: THREE.flatShading}));
@@ -315,7 +315,7 @@ export const collidable = new Object();
         var receptorL = new THREE.Mesh(receptorGeo, new THREE.MeshPhongMaterial( { emissive: new THREE.Color("hsl(303, 100%, 68%)"), wireframe:true,  specular: 0x555555, shininess: 100,
         shading: THREE.flatShading }));
         receptorL.position.set(-1200,0,-2910);
-        collidable[62] = {receptor: receptorL, active: false};
+        collidable[52] = {receptor: receptorL, active: false};
 
       var btnZ = new THREE.Mesh(btnGeometry, new THREE.MeshPhongMaterial({color: new THREE.Color("hsl(185, 81%, 60%)"), specular: 0x555555, shininess: 100,
       shading: THREE.flatShading}));
@@ -324,7 +324,7 @@ export const collidable = new Object();
           var receptorZ = new THREE.Mesh(receptorGeo, new THREE.MeshPhongMaterial( { emissive: new THREE.Color("hsl(303, 100%, 68%)"), wireframe:true,  specular: 0x555555, shininess: 100,
           shading: THREE.flatShading }));
           receptorZ.position.set(1050,0,-2910);
-          collidable[47] = {receptor: receptorZ, active: false};
+          collidable[37] = {receptor: receptorZ, active: false};
       
       var btnX = new THREE.Mesh(btnGeometry, new THREE.MeshPhongMaterial({color: new THREE.Color("hsl(185, 81%, 60%)"), specular: 0x555555, shininess: 100,
       shading: THREE.flatShading}));
@@ -333,7 +333,7 @@ export const collidable = new Object();
           var receptorX = new THREE.Mesh(receptorGeo, new THREE.MeshPhongMaterial( { emissive: new THREE.Color("hsl(303, 100%, 68%)"), wireframe:true,  specular: 0x555555, shininess: 100,
           shading: THREE.flatShading }));
           receptorX.position.set(750,0,-2910);
-          collidable[49] = {receptor: receptorX, active: false};
+          collidable[39] = {receptor: receptorX, active: false};
 
       var btnC = new THREE.Mesh(btnGeometry, new THREE.MeshPhongMaterial({color: new THREE.Color("hsl(185, 81%, 60%)"), specular: 0x555555, shininess: 100,
       shading: THREE.flatShading}));
@@ -342,7 +342,7 @@ export const collidable = new Object();
           var receptorC = new THREE.Mesh(receptorGeo, new THREE.MeshPhongMaterial( { emissive: new THREE.Color("hsl(303, 100%, 68%)"), wireframe:true,  specular: 0x555555, shininess: 100,
           shading: THREE.flatShading }));
           receptorC.position.set(450,0,-2910);
-          collidable[51] = {receptor: receptorC, active: false};
+          collidable[41] = {receptor: receptorC, active: false};
 
       var btnV = new THREE.Mesh(btnGeometry, new THREE.MeshPhongMaterial({color: new THREE.Color("hsl(185, 81%, 60%)"), specular: 0x555555, shininess: 100,
       shading: THREE.flatShading}));
@@ -351,7 +351,7 @@ export const collidable = new Object();
           var receptorV = new THREE.Mesh(receptorGeo, new THREE.MeshPhongMaterial( { emissive: new THREE.Color("hsl(303, 100%, 68%)"), wireframe:true,  specular: 0x555555, shininess: 100,
           shading: THREE.flatShading }));
           receptorV.position.set(150,0,-2910);
-          collidable[53] = {receptor: receptorV, active: false};
+          collidable[43] = {receptor: receptorV, active: false};
 
       var btnB = new THREE.Mesh(btnGeometry, new THREE.MeshPhongMaterial({color: new THREE.Color("hsl(185, 81%, 60%)"), specular: 0x555555, shininess: 100,
       shading: THREE.flatShading}));
@@ -360,7 +360,7 @@ export const collidable = new Object();
           var receptorB = new THREE.Mesh(receptorGeo, new THREE.MeshPhongMaterial( { emissive: new THREE.Color("hsl(303, 100%, 68%)"), wireframe:true,  specular: 0x555555, shininess: 100,
           shading: THREE.flatShading }));
           receptorB.position.set(-150,0,-2910);
-          collidable[55] = {receptor: receptorB, active: false};
+          collidable[45] = {receptor: receptorB, active: false};
 
       var btnN = new THREE.Mesh(btnGeometry, new THREE.MeshPhongMaterial({color: new THREE.Color("hsl(185, 81%, 60%)"), specular: 0x555555, shininess: 100,
       shading: THREE.flatShading}));
@@ -369,7 +369,7 @@ export const collidable = new Object();
           var receptorN = new THREE.Mesh(receptorGeo, new THREE.MeshPhongMaterial( { emissive: new THREE.Color("hsl(303, 100%, 68%)"), wireframe:true,  specular: 0x555555, shininess: 100,
           shading: THREE.flatShading }));
           receptorN.position.set(-450,0,-2910);
-          collidable[57] = {receptor: receptorN, active: false};
+          collidable[47] = {receptor: receptorN, active: false};
 
       var btnM = new THREE.Mesh(btnGeometry, new THREE.MeshPhongMaterial({color: new THREE.Color("hsl(185, 81%, 60%)"), specular: 0x555555, shininess: 100,
       shading: THREE.flatShading}));
@@ -378,7 +378,7 @@ export const collidable = new Object();
           var receptorM = new THREE.Mesh(receptorGeo, new THREE.MeshPhongMaterial( { emissive: new THREE.Color("hsl(303, 100%, 68%)"), wireframe:true,  specular: 0x555555, shininess: 100,
           shading: THREE.flatShading }));
           receptorM.position.set(-750,0,-2910);
-          collidable[59] = {receptor: receptorM, active: false};
+          collidable[49] = {receptor: receptorM, active: false};
 
       var btnComma = new THREE.Mesh(btnGeometry, new THREE.MeshPhongMaterial({color: new THREE.Color("hsl(185, 81%, 60%)"), specular: 0x555555, shininess: 100,
       shading: THREE.flatShading}));
@@ -387,7 +387,7 @@ export const collidable = new Object();
           var receptorComma = new THREE.Mesh(receptorGeo, new THREE.MeshPhongMaterial( { emissive: new THREE.Color("hsl(303, 100%, 68%)"), wireframe:true,  specular: 0x555555, shininess: 100,
           shading: THREE.flatShading }));
           receptorComma.position.set(-1050,0,-2910);
-          collidable[61] = {receptor: receptorComma, active: false};
+          collidable[51] = {receptor: receptorComma, active: false};
       
       
       
@@ -445,87 +445,87 @@ export const collidable = new Object();
         case 65:
           btn = 'btnA'
           char = 'charA'
-          receptor = 46
+          receptor = 36
           break;
         case 83:
           btn = 'btnS'
           char = 'charS'
-          receptor = 48
+          receptor = 38
           break;
         case 68:
           btn = 'btnD'
           char = 'charD'
-          receptor = 50
+          receptor = 40
           break;
         case 70:
           btn = 'btnF'
           char = 'charF'
-          receptor = 52
+          receptor = 42
           break;
         case 71:
           btn = 'btnG'
           char = 'charG'
-          receptor = 54
+          receptor = 44
           break;
         case 72:
           btn = 'btnH'
           char = 'charH'
-          receptor = 56
+          receptor = 46
           break;
         case 74:
           btn = 'btnJ'
           char = 'charJ'
-          receptor = 58
+          receptor = 48
           break;
         case 75:
           btn = 'btnK'
           char = 'charK'
-          receptor = 60
+          receptor = 50
           break;
         case 76:
           btn = 'btnL'
           char = 'charL'
-          receptor = 62
+          receptor = 52
           break;
         case 90:
           btn = 'btnZ'
           char = 'charZ'
-          receptor = 47
+          receptor = 37
           break;
         case 88:
           btn = 'btnX'
           char = 'charX'
-          receptor = 49
+          receptor = 39
           break;
         case 67:
           btn = 'btnC'
           char = 'charC'
-          receptor = 51
+          receptor = 41
           break;
         case 86:
           btn = 'btnV'
           char = 'charV'
-          receptor = 53
+          receptor = 43
           break;
         case 66:
           btn = 'btnB'
           char = 'charB'
-          receptor = 55
+          receptor = 45
           break;
         case 78:
           btn = 'btnN'
           char = 'charN'
-          receptor = 57
+          receptor = 47
           break;
         case 77:
           btn = 'btnM'
           char = 'charM'
-          receptor = 59
+          receptor = 49
           break;  
         case 188:
           btn = 'btnComma'
           char = 'charComma'
-          receptor = 61
+          receptor = 51
           break;
         default: 
         break;
@@ -549,4 +549,3 @@ export const collidable = new Object();
           chars[char].position.y = 45
       }
   }
-  debugger

@@ -14,8 +14,8 @@
 
   
 
-  <audio class='audio-player' controls>
-    <source src="audio/starry-eyed/starry-eyed-nodrums.wav" type="audio/wav">
+  <audio id='audio-player' controls>
+    <source src="audio/starry-eyed/starry-eyed-nodrums.mp3" type="audio/wav">
   Your browser does not support the audio element.
   </audio>
 
@@ -98,9 +98,9 @@
   </div>
 
   <audio data-key="65" src="audio/starry-eyed/drums/tick.wav"></audio>
-  <audio data-key="83" src="audio/starry-eyed/drums/hat-crash.wav"></audio>
-  <audio data-key="68" src="audio/starry-eyed/drums/kick-pitch.wav"></audio>
-  <audio data-key="70" src="audio/starry-eyed/drums/snare-pitch.wav"></audio>
+  <audio data-key="83" src="audio/starry-eyed/drums/closed-hat.wav"></audio>
+  <audio data-key="68" src="audio/starry-eyed/drums/kick.wav"></audio>
+  <audio data-key="70" src="audio/starry-eyed/drums/snare.wav"></audio>
   <audio data-key="71" src="audio/starry-eyed/drums/hat-crash.wav"></audio>
   <audio data-key="72" src="audio/starry-eyed/drums/big-kick.wav"></audio>
   <audio data-key="74" src="audio/starry-eyed/drums/clap-snare.wav"></audio>
@@ -110,10 +110,13 @@
 
   <audio data-key="90" src="audio/starry-eyed/drums/kick-short.wav"></audio>
   <audio data-key="88" src="audio/starry-eyed/drums/clap.wav"></audio>
-  <audio data-key="67" src="audio/starry-eyed/drums/tom-trill-sparkle.wav"></audio>
-  <audio data-key="86" src="audio/starry-eyed/drums/snap1.wav"></audio>
-  <audio data-key="66" src="audio/starry-eyed/drums/snap2.wav"></audio>
-  <audio data-key="78" src="audio/starry-eyed/drums/snap3.wav"></audio>
+  <audio data-key="67" src="audio/starry-eyed/drums/kick-pitch"></audio>
+  <audio data-key="86" src="audio/starry-eyed/drums/snare-pitch.wav"></audio>
+  <audio data-key="66" src="audio/starry-eyed/drums/snap1.wav"></audio>
+  <audio data-key="78" src="audio/starry-eyed/drums/snap2.wav"></audio>
+
+  <audio data-key="77" src="audio/starry-eyed/drums/snap3.wav"></audio>
+  <audio data-key="188" src="audio/starry-eyed/drums/snap3.wav"></audio>
 
 
 
@@ -146,7 +149,9 @@
   <script type='module' src='javascripts/controller.js'></script>
   <script type='module' src='javascripts/skybox.js'></script>
   <!-- <script src='/javascripts/animation.js'></script> -->
+  <button id='start-button'>Start</button>
   </div>
+
 
 </body>
 </html>

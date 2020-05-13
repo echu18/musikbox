@@ -15,8 +15,14 @@ body,html {
   overflow: hidden;
 
 }
+#start-button {
+  position: absolute;
+  height: 100px;
+  width: 100px;
+  z-index: 100;
+}
 
-.audio-player {
+#audio-player {
   position: absolute;
   top: 0;
   right: 0;
