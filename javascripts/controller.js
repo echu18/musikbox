@@ -24,7 +24,7 @@ export const collidable = new Object();
      
       // Chars
       var loader = new THREE.FontLoader();
-      loader.load( '../bebas.json', function ( font ) {
+      loader.load( '../../bebas.json', function ( font ) {
         var titleTextGeo = new THREE.TextGeometry( 'Musikbox', {
           font: font,
           size: 600,
