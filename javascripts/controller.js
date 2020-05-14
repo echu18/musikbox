@@ -1,8 +1,7 @@
 export const btns= new Object();
 export const chars = new Object();
 export const collidable = new Object();
-
-
+let controller;
   export function createController(scene) {
     
     var geometry = new THREE.CubeGeometry(2700, 60, 300);
@@ -14,7 +13,7 @@ export const collidable = new Object();
       shininess: 50,
       shading: THREE.SmoothShading
     })
-    var controller = new THREE.Mesh(geometry, material);
+     controller = new THREE.Mesh(geometry, material);
 
     controller.position.z = -3062;
     scene.add(controller)
@@ -226,7 +225,7 @@ export const collidable = new Object();
 
 
       // var receptorGeo = new THREE.BoxGeometry( 140, 60, 100, 1, 1, 1 );
-      var receptorGeo = new THREE.PlaneGeometry( 140, 60, 1, 1, 1, 1 );
+      var receptorGeo = new THREE.CubeGeometry( 140, 60, 1, 1, 1, 1 );
       // var wallMaterial = new THREE.MeshBasicMaterial( {color: 0x8888ff} );
 	    // var wireMat = new THREE.MeshPhongMaterial( { emissive: receptorColor, wireframe:true,  specular: 0x555555, shininess: 100,
       // flatShading: true } );
@@ -239,7 +238,7 @@ export const collidable = new Object();
       flatShading: true}));
         btnA.position.set(1200, 30, -3000);
       
-          var receptorA = new THREE.Mesh(receptorGeo, new THREE.MeshPhongMaterial( { emissive: receptorColor, wireframe:true,  shininess: 100,
+          var receptorA = new THREE.Mesh(receptorGeo, new THREE.MeshPhongMaterial( { emissive: receptorColor,  shininess: 100,
           flatShading: true }));
           receptorA.position.set(1200,0,-2910);
           collidable[36] = {receptor: receptorA, active: false};
@@ -248,7 +247,7 @@ export const collidable = new Object();
       flatShading: true}));
       btnS.position.set(900, 30, -3000);
 
-          var receptorS = new THREE.Mesh(receptorGeo, new THREE.MeshPhongMaterial( { emissive: receptorColor, wireframe:true,  shininess: 100,
+          var receptorS = new THREE.Mesh(receptorGeo, new THREE.MeshPhongMaterial( { emissive: receptorColor,  shininess: 100,
           flatShading: true }));
           receptorS.position.set(900,0,-2910);
           collidable[38] =  {receptor: receptorS, active: false};
@@ -257,7 +256,7 @@ export const collidable = new Object();
       flatShading: true}));
       btnD.position.set(600, 30, -3000);
 
-          var receptorD = new THREE.Mesh(receptorGeo, new THREE.MeshPhongMaterial( { emissive: receptorColor, wireframe:true,  shininess: 100,
+          var receptorD = new THREE.Mesh(receptorGeo, new THREE.MeshPhongMaterial( { emissive: receptorColor,  shininess: 100,
           flatShading: true }));
           receptorD.position.set(600,0,-2910);
           collidable[40] = {receptor: receptorD, active: false};
@@ -266,7 +265,7 @@ export const collidable = new Object();
       flatShading: true}));
       btnF.position.set(300, 30, -3000);
 
-          var receptorF = new THREE.Mesh(receptorGeo, new THREE.MeshPhongMaterial( { emissive: receptorColor, wireframe:true,  shininess: 100,
+          var receptorF = new THREE.Mesh(receptorGeo, new THREE.MeshPhongMaterial( { emissive: receptorColor,  shininess: 100,
           flatShading: true }));
 
           receptorF.position.set(300,0,-2910);
@@ -276,7 +275,7 @@ export const collidable = new Object();
       flatShading: true}));
       btnG.position.set(0, 30, -3000);
 
-          var receptorG = new THREE.Mesh(receptorGeo, new THREE.MeshPhongMaterial( { emissive: receptorColor, wireframe:true,  shininess: 100,
+          var receptorG = new THREE.Mesh(receptorGeo, new THREE.MeshPhongMaterial( { emissive: receptorColor,  shininess: 100,
           flatShading: true }));
 
           receptorG.position.set(0,0,-2910);
@@ -286,7 +285,7 @@ export const collidable = new Object();
       flatShading: true}));
       btnH.position.set(-300, 30, -3000);
 
-          var receptorH = new THREE.Mesh(receptorGeo, new THREE.MeshPhongMaterial( { emissive: receptorColor, wireframe:true,  shininess: 100,
+          var receptorH = new THREE.Mesh(receptorGeo, new THREE.MeshPhongMaterial( { emissive: receptorColor,  shininess: 100,
           flatShading: true }));
           receptorH.position.set(-300,0,-2910);
           collidable[46] = {receptor: receptorH, active: false};
@@ -295,7 +294,7 @@ export const collidable = new Object();
       flatShading: true}));
       btnJ.position.set(-600, 30, -3000);
 
-          var receptorJ = new THREE.Mesh(receptorGeo, new THREE.MeshPhongMaterial( { emissive: receptorColor, wireframe:true,  shininess: 100,
+          var receptorJ = new THREE.Mesh(receptorGeo, new THREE.MeshPhongMaterial( { emissive: receptorColor,  shininess: 100,
           flatShading: true }));
           receptorJ.position.set(-600,0,-2910);
           collidable[48] = {receptor: receptorJ, active: false};
@@ -304,7 +303,7 @@ export const collidable = new Object();
       flatShading: true}));
       btnK.position.set(-900, 30, -3000);
 
-          var receptorK = new THREE.Mesh(receptorGeo, new THREE.MeshPhongMaterial( { emissive: receptorColor, wireframe:true,  shininess: 100,
+          var receptorK = new THREE.Mesh(receptorGeo, new THREE.MeshPhongMaterial( { emissive: receptorColor,  shininess: 100,
           flatShading: true }));
           receptorK.position.set(-900,0,-2910);
           collidable[50] = {receptor: receptorK, active: false};
@@ -313,7 +312,7 @@ export const collidable = new Object();
       flatShading: true}));
       btnL.position.set(-1200, 30, -3000);
 
-        var receptorL = new THREE.Mesh(receptorGeo, new THREE.MeshPhongMaterial( { emissive: receptorColor, wireframe:true,  shininess: 100,
+        var receptorL = new THREE.Mesh(receptorGeo, new THREE.MeshPhongMaterial( { emissive: receptorColor,  shininess: 100,
         flatShading: true }));
         receptorL.position.set(-1200,0,-2910);
         collidable[52] = {receptor: receptorL, active: false};
@@ -322,7 +321,7 @@ export const collidable = new Object();
       flatShading: true}));
       btnZ.position.set(1050, 30, -3125);
 
-          var receptorZ = new THREE.Mesh(receptorGeo, new THREE.MeshPhongMaterial( { emissive: receptorColor, wireframe:true,  shininess: 100,
+          var receptorZ = new THREE.Mesh(receptorGeo, new THREE.MeshPhongMaterial( { emissive: receptorColor,  shininess: 100,
           flatShading: true }));
           receptorZ.position.set(1050,0,-2910);
           collidable[37] = {receptor: receptorZ, active: false};
@@ -331,7 +330,7 @@ export const collidable = new Object();
       flatShading: true}));
       btnX.position.set(750, 30, -3125);
 
-          var receptorX = new THREE.Mesh(receptorGeo, new THREE.MeshPhongMaterial( { emissive: receptorColor, wireframe:true,  shininess: 100,
+          var receptorX = new THREE.Mesh(receptorGeo, new THREE.MeshPhongMaterial( { emissive: receptorColor,  shininess: 100,
           flatShading: true }));
           receptorX.position.set(750,0,-2910);
           collidable[39] = {receptor: receptorX, active: false};
@@ -340,7 +339,7 @@ export const collidable = new Object();
       flatShading: true}));
       btnC.position.set(450, 30, -3125);
       
-          var receptorC = new THREE.Mesh(receptorGeo, new THREE.MeshPhongMaterial( { emissive: receptorColor, wireframe:true,  shininess: 100,
+          var receptorC = new THREE.Mesh(receptorGeo, new THREE.MeshPhongMaterial( { emissive: receptorColor,  shininess: 100,
           flatShading: true }));
           receptorC.position.set(450,0,-2910);
           collidable[41] = {receptor: receptorC, active: false};
@@ -349,7 +348,7 @@ export const collidable = new Object();
       flatShading: true}));
       btnV.position.set(150, 30, -3125);
 
-          var receptorV = new THREE.Mesh(receptorGeo, new THREE.MeshPhongMaterial( { emissive: receptorColor, wireframe:true,  shininess: 100,
+          var receptorV = new THREE.Mesh(receptorGeo, new THREE.MeshPhongMaterial( { emissive: receptorColor,  shininess: 100,
           flatShading: true }));
           receptorV.position.set(150,0,-2910);
           collidable[43] = {receptor: receptorV, active: false};
@@ -358,7 +357,7 @@ export const collidable = new Object();
       flatShading: true}));
       btnB.position.set(-150, 30, -3125);
 
-          var receptorB = new THREE.Mesh(receptorGeo, new THREE.MeshPhongMaterial( { emissive: receptorColor, wireframe:true,  shininess: 100,
+          var receptorB = new THREE.Mesh(receptorGeo, new THREE.MeshPhongMaterial( { emissive: receptorColor,  shininess: 100,
           flatShading: true }));
           receptorB.position.set(-150,0,-2910);
           collidable[45] = {receptor: receptorB, active: false};
@@ -367,7 +366,7 @@ export const collidable = new Object();
       flatShading: true}));
       btnN.position.set(-450, 30, -3125);
 
-          var receptorN = new THREE.Mesh(receptorGeo, new THREE.MeshPhongMaterial( { emissive: receptorColor, wireframe:true,  shininess: 100,
+          var receptorN = new THREE.Mesh(receptorGeo, new THREE.MeshPhongMaterial( { emissive: receptorColor,  shininess: 100,
           flatShading: true }));
           receptorN.position.set(-450,0,-2910);
           collidable[47] = {receptor: receptorN, active: false};
@@ -376,7 +375,7 @@ export const collidable = new Object();
       flatShading: true}));
       btnM.position.set(-750, 30, -3125);
 
-          var receptorM = new THREE.Mesh(receptorGeo, new THREE.MeshPhongMaterial( { emissive: receptorColor, wireframe:true, shininess: 100,
+          var receptorM = new THREE.Mesh(receptorGeo, new THREE.MeshPhongMaterial( { emissive: receptorColor, shininess: 100,
           flatShading: true }));
           receptorM.position.set(-750,0,-2910);
           collidable[49] = {receptor: receptorM, active: false};
@@ -385,7 +384,7 @@ export const collidable = new Object();
       flatShading: true}));
       btnComma.position.set(-1050, 30, -3125);
 
-          var receptorComma = new THREE.Mesh(receptorGeo, new THREE.MeshPhongMaterial( { emissive: receptorColor, wireframe:true, shininess: 100,
+          var receptorComma = new THREE.Mesh(receptorGeo, new THREE.MeshPhongMaterial( { emissive: receptorColor, shininess: 100,
           flatShading: true }));
           receptorComma.position.set(-1050,0,-2910);
           collidable[51] = {receptor: receptorComma, active: false};

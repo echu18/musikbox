@@ -1,12 +1,19 @@
 import midiData from '../starry-drums-test1.js'
 import {createController, collidable, btns, chars} from './controller.js'
+import {togglePauseMenu} from '../javascripts/menu.js'
+
+
 
 
 var midiNotes = midiData.tracks[0].notes;
 var tempo =  midiData.header.ppq / 10
 
-var group = new THREE.Group()
-let scene, camera, renderer, skybox, starField, cube, album, midiBlocks = new Object(), gameStart = false;
+
+var gameStart = false;
+
+
+
+let scene, projector, controls, camera, renderer, skybox, starField, cube, album, midiBlocks = new Object();
 
 function init() {
   scene = new THREE.Scene();
@@ -123,19 +130,6 @@ function init() {
   scene.add(backLight3);
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
   
         var color1 =  new THREE.Color("hsl(203, 81%, 61%)");
         var color2 = new THREE.Color("hsl(83, 81%, 51%)");
@@ -229,7 +223,8 @@ function init() {
       // cube.position.z= 1500; // Position z to make cube front and back
      
       // cube.position.z = 1500 + (midiNotes[i].time * (tempo * 60.05))
-      cube.position.z = 0 + (midiNotes[i].time * (tempo * 60.01))
+      // cube.position.z = 0 + (midiNotes[i].time * (tempo * 60))
+      cube.position.z = (tempo * -200) + (midiNotes[i].time * (tempo * 60))
       
 
       midiBlocks[i] = cube;
@@ -256,32 +251,74 @@ function init() {
   // // gridHelper.scale.set(2700, 10, 6000)
   // gridHelper.position.z = -1500;
   // scene.add( gridHelper );
-  // animate()
-
-
-  document.getElementById('start-button').addEventListener('click', 
-  function() {
-    animate()
-    // setTimeout(function(){startMusic()}, 7750);
-    gameStart = true;
-    setTimeout(function(){startMusic()}, 5000);
-  })
+  animate()
 }
-  
 
-// Will re-render if window is resized  
-window.addEventListener('resize', () => {
-  renderer.setSize(window.innerWidth, window.innerHeight);
-  camera.aspect = window.innerWidth / window.innerHeight;
-  camera.updateProjectionMatrix();
-})
 
   var audio = document.getElementById("audio-player");
 
 
   function startMusic() {
     audio.play();
+    gameStart = true;
   }
+
+document.getElementById('start-button').addEventListener('click', 
+function() {
+  $('.main-menu').hide()
+
+  init();
+  
+  gameStart = true;
+  // setTimeout(function(){startMusic()}, 5000);
+  setTimeout(function(){startMusic()}, 2000);
+
+  audio.onended = function(){
+    gameStart = false;
+    $('.end-menu').show()
+  }
+})
+
+
+export function togglePause() {
+   if ((gameStart === false || gameStart === 'pause') && audio.paused){
+    gameStart = true;
+    audio.play();
+    togglePauseMenu()
+  } else {
+      gameStart = 'pause'
+    audio.pause()
+    togglePauseMenu()
+    window.clearTimeout()
+  }
+}
+
+
+
+export function stopGame(){
+  audio.pause();
+  audio.currentTime = 0;
+  gameStart = false;
+
+  while(scene.children.length > 0) { 
+    scene.remove(scene.children[0]); 
+  }
+  // this.renderer.domElement.addEventListener('dblclick', null, false); //remove listener to render
+  renderer.dispose()
+  scene = null;
+  projector = null;
+  camera = null;
+  controls = null;
+  window.location.reload()
+}
+
+
+
+
+
+
+
+
 
 
   
@@ -299,7 +336,6 @@ window.addEventListener('resize', () => {
   //   }
   // }
 
-
   function animate() {
     skybox.rotation.x -= 0.0008;
     // skybox.rotation.y += 0.001;
@@ -312,7 +348,9 @@ window.addEventListener('resize', () => {
     if (gameStart === true) {
       album.rotation.x -= 0.001;
       album.rotation.y -= 0.001;
-      album.rotation.z -= 0.001;
+      // album.rotation.z -= 0.001;
+
+   
 
       for (let i=0; i < midiNotes.length; i++) {
         let block = midiBlocks[i]
@@ -333,9 +371,7 @@ window.addEventListener('resize', () => {
             } else {
               collidable[block.name].active = false
               scene.remove(block)
-              // delete midiBlocks[i]
             }
-            // collidable[block.name].active = false
           } else if (startPos <= (-2910 + 50) ) {
 
             if (collidable[block.name].active === true) overlap = true;
@@ -349,8 +385,10 @@ window.addEventListener('resize', () => {
           } 
         } 
       } 
-    renderer.render(scene,camera);
-    requestAnimationFrame(animate);
+
+      requestAnimationFrame(animate);
+      renderer.render(scene,camera);
+   
 
     // setTimeout( function() {
 
@@ -362,17 +400,14 @@ window.addEventListener('resize', () => {
   }
 
   
-init();
+// init();
 
-function togglePause() {
-  if (gameStart === false || gameStart === 'pause'){
-    gameStart = true;
-    audio.play();
-  } else {
-    gameStart = 'pause'
-    audio.pause()
-  }
-}
+
+
+
+
+
+
 
 
 
@@ -382,7 +417,7 @@ function togglePause() {
   
 
   function keyEvent(e, eventType){
-    if (eventType === 'press' && e.keyCode === 27) {
+    if (eventType === 'press' && (e.keyCode === 27 || e.keyCode === 179) && !$(".main-menu").is(":visible")) {
       togglePause();
     }
       e.preventDefault();
@@ -507,3 +542,13 @@ function togglePause() {
       }
 
     }
+
+
+
+
+    // Will re-render if window is resized  
+window.addEventListener('resize', () => {
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+})
