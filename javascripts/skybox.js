@@ -10,8 +10,8 @@ import {createController, collidable} from './controller.js'
 var midiNotes = midiData.tracks[0].notes;
 var tempo =  midiData.header.ppq / 10
 
-
-let scene, camera, renderer, skybox, starField, cube, midiBlocks = [];
+var group = new THREE.Group()
+let scene, camera, renderer, skybox, starField, cube, midiBlocks = new Object();
 
 function init() {
   scene = new THREE.Scene();
@@ -43,21 +43,21 @@ function init() {
 
 
   // Add starfield
-  var starGeo = new THREE.Geometry();
-  for (let i = 0; i < 10000; i++) {
-    var vertex = new THREE.Vector3();
-    vertex.x = Math.random()*10000-5000;
-    vertex.y = Math.random()*10000-5000;
-    vertex.z = Math.random()*10000-5000;
-    starGeo.vertices.push(vertex);
-  }
-  starField = new THREE.PointCloud(starGeo, new THREE.PointCloudMaterial({
-    size: 0.1,
-    color: 0xffffff
-    })
-  );
-  scene.add(starField);
-  starField.position.z = 100;
+  // var starGeo = new THREE.Geometry();
+  // for (let i = 0; i < 1000; i++) {
+  //   var vertex = new THREE.Vector3();
+  //   vertex.x = Math.random()*10000-5000;
+  //   vertex.y = Math.random()*10000-5000;
+  //   vertex.z = Math.random()*10000-5000;
+  //   starGeo.vertices.push(vertex);
+  // }
+  // starField = new THREE.PointCloud(starGeo, new THREE.PointCloudMaterial({
+  //   size: 0.1,
+  //   color: 0xffffff
+  //   })
+  // );
+  // scene.add(starField);
+  // starField.position.z = 100;
 
 
 
@@ -73,26 +73,26 @@ function init() {
   // let texture_lf = new THREE.TextureLoader().load( 'images/ellie/negz.jpg');
 
 
-  let texture_ft = new THREE.TextureLoader().load( 'images/galaxy/galaxy-negy.jpg');
-  let texture_bk = new THREE.TextureLoader().load( 'images/galaxy/galaxy-negz.jpg');
-  let texture_up = new THREE.TextureLoader().load( 'images/galaxy/galaxy-posy.jpg');
-  let texture_dn = new THREE.TextureLoader().load( 'images/galaxy/galaxy-posz.jpg');
-  let texture_rt = new THREE.TextureLoader().load( 'images/galaxy/galaxy-negy.jpg');
-  let texture_lf = new THREE.TextureLoader().load( 'images/galaxy/galaxy-posx.jpg');
+  // let texture_ft = new THREE.TextureLoader().load( 'images/galaxy/galaxy-negy.jpg');
+  // let texture_bk = new THREE.TextureLoader().load( 'images/galaxy/galaxy-negz.jpg');
+  // let texture_up = new THREE.TextureLoader().load( 'images/galaxy/galaxy-posy.jpg');
+  // let texture_dn = new THREE.TextureLoader().load( 'images/galaxy/galaxy-posz.jpg');
+  // let texture_rt = new THREE.TextureLoader().load( 'images/galaxy/galaxy-negy.jpg');
+  // let texture_lf = new THREE.TextureLoader().load( 'images/galaxy/galaxy-posx.jpg');
         
-  materialArray.push(new THREE.MeshBasicMaterial( { map: texture_ft }));
-  materialArray.push(new THREE.MeshBasicMaterial( { map: texture_bk }));
-  materialArray.push(new THREE.MeshBasicMaterial( { map: texture_up }));
-  materialArray.push(new THREE.MeshBasicMaterial( { map: texture_dn }));
-  materialArray.push(new THREE.MeshBasicMaterial( { map: texture_rt }));
-  materialArray.push(new THREE.MeshBasicMaterial( { map: texture_lf }));
+  // materialArray.push(new THREE.MeshBasicMaterial( { map: texture_ft }));
+  // materialArray.push(new THREE.MeshBasicMaterial( { map: texture_bk }));
+  // materialArray.push(new THREE.MeshBasicMaterial( { map: texture_up }));
+  // materialArray.push(new THREE.MeshBasicMaterial( { map: texture_dn }));
+  // materialArray.push(new THREE.MeshBasicMaterial( { map: texture_rt }));
+  // materialArray.push(new THREE.MeshBasicMaterial( { map: texture_lf }));
  
   
-  for (let i = 0; i < 6; i++) 
-  materialArray[i].side = THREE.BackSide;
-  let skyboxGeo = new THREE.BoxGeometry( 10000, 10000, 10000);
-  skybox = new THREE.Mesh( skyboxGeo, materialArray );
-  scene.add( skybox );  
+  // for (let i = 0; i < 6; i++) 
+  // materialArray[i].side = THREE.BackSide;
+  // let skyboxGeo = new THREE.CubeGeometry( 8000, 8000, 8000);
+  // skybox = new THREE.Mesh( skyboxGeo, materialArray );
+  // scene.add( skybox );  
 
 
 
@@ -120,70 +120,77 @@ function init() {
 
 
 
+
+
+
+
+
+
+
+
+
+
   
-
-
-
-
-
-
-
-
-
+        var color1 =  new THREE.Color("hsl(203, 81%, 61%)");
+        var color2 = new THREE.Color("hsl(83, 81%, 51%)");
+        var color3 = new THREE.Color("hsl(8, 70%, 75%)");
+        var color4 = new THREE.Color("hsl(99, 70%, 62%)");
+        var color5 = new THREE.Color("hsl(17, 81%, 63%)");
+        var color6 = new THREE.Color("hsl(177, 81%, 47%)");
+        var color7 = new THREE.Color("hsl(221, 81%, 54%)");
 
     // Each time function is called it creates a single midi bar
-    function addNote(midiKey, durationTicks) {
+    function addNote(midiKey, durationTicks, i) {
       let color;  // Switch statement will evaluate midiKey and choose color
-
       switch (midiKey) {
         case 36:
-          color = new THREE.Color("hsl(203, 81%, 61%)");
+          color = color1;
         case 37:
-          color = new THREE.Color("hsl(83, 81%, 51%)");
+          color = color2;
         case 38:
-          color = new THREE.Color("hsl(8, 70%, 75%)");
+          color = color3;
           break;
         case 39:
-          color = new THREE.Color("hsl(99, 70%, 62%)");
+          color = color4;
           break;
         case 40:
-          color = new THREE.Color("hsl(330, 70%, 73%)");
+          color = color5;
           break;
         case 41:
-          color = new THREE.Color("hsl(237, 70%, 61%)");
+          color = color6;
           break;
         case 42:
-          color = new THREE.Color("hsl(17, 81%, 63%)");
+          color = color7;
           break;
         case 43:
-          color = new THREE.Color("hsl(177, 81%, 47%)");
-          break;  h
+          color = color1;
+          break; 
         case 44:
-          color = new THREE.Color("hsl(289, 81%, 77%)");
+          color = color2;
           break;
         case 45:
-          color = new THREE.Color("hsl(221, 81%, 54%)");
+          color = color3;
           break;
         case 46:
-          color = new THREE.Color("hsl(120, 81%, 67%)");
+          color = color4;
           break;
         case 47:
-          color = new THREE.Color("hsl(185, 81%, 60%)");
+          color = color5;
           break;
         case 48:
-          color = new THREE.Color("hsl(62, 81%, 64%)");
+          color = color6;
           break;
         case 49:
-          color = new THREE.Color("hsl(347, 81%, 64%)");
+          color = color7;
           break;
         case 50:
-          color = new THREE.Color("hsl(256, 81%, 58%)");
+          color = color1;
           break;
         case 51:
-          color = new THREE.Color("hsl(260, 81%, 86%)");
+          color = color2;
           break;
         case 52:
-          color = new THREE.Color("hsl(221, 81%, 54%)");
+          color = color3;
           break;
         // case 53:
         //   color = new THREE.Color("hsl(203, 81%, 61%)");
@@ -197,14 +204,15 @@ function init() {
       var noteLength = 5 * durationTicks
 
       // var midiGeo = new THREE.BoxGeometry(50,50, noteLength);
-      var midiGeo = new THREE.BoxBufferGeometry(50,50, noteLength);
+      var midiGeo = new THREE.CubeGeometry(50,50, noteLength);
+      // var midiGeo = new THREE.BoxBufferGeometry(50,50, noteLength);
       var midiMat = new THREE.MeshPhongMaterial({
-        ambient: 0x555555,
-        color: 0x555555,
-        specular: 0xffffff,
+        // ambient: 0x555555,
+        // color: 0x555555,
+        // specular: 0xffffff,
         emissive: color,
         shininess: 50,
-        shading: THREE.SmoothShading, wireframe: false
+        flatShading: true, wireframe: false
       })
       cube = new THREE.Mesh(midiGeo, midiMat);
       cube.name = midiKey
@@ -212,23 +220,27 @@ function init() {
       var position = (44 - midiKey) * 150
       cube.position.x = position
       // cube.position.z= 1500; // Position z to make cube front and back
-      cube.position.z= 1500; // Position z to make cube front and back
-      midiBlocks.push(cube)
+      // cube.position.z= 1500; // Position z to make cube front and back
+      if (i === 0) {
+        cube.position.z = 1500
+      } else {
+        cube.position.z = 1450 + (midiNotes[i].time * (tempo * 60.1))
+      }
+
+      midiBlocks[i] = cube;
+
+      scene.add(cube)
     }
 
     createController(scene)
 
     // Iterate through midi notes and creates a midi block for each
-    midiNotes.forEach ((note) => {
-      addNote(note.midi, note.durationTicks)
+    midiNotes.forEach ((note, i) => {
+      addNote(note.midi, note.durationTicks, i)
     })
 
-    midiBlocks[0].position.z = -2900
+  
 
-    // for (let i=0; i < midiBlocks.length; i++) {
-    //   let block = midiBlocks[i]
-    //   scene.add(block)
-    // }
     // Grid
 
   // var size = 2700;
@@ -242,18 +254,16 @@ function init() {
   // animate();
 
 
+
+
+
   document.getElementById('start-button').addEventListener('click', 
   function() {
     animate()
     setTimeout(function(){startMusic()}, 7750);
-    // startMusic();
   })
 }
   
-
-
-
-
 
 // Will re-render if window is resized  
 window.addEventListener('resize', () => {
@@ -265,30 +275,35 @@ window.addEventListener('resize', () => {
 
     var audio = document.getElementById("audio-player");
 
+  
 
 
   function animate() {
-    skybox.rotation.x -= 0.0008;
+    // skybox.rotation.x -= 0.0008;
     // skybox.rotation.y += 0.001;
     // starField.rotation.x -= 0.001;
     // starField.rotation.y -= 0.001;
-    starField.rotation.z += 0.0008;
+    // starField.rotation.z += 0.0008;
     
-
-    for (let i=0; i < midiBlocks.length; i++) {
+    for (let i=0; i < midiNotes.length; i++) {
 
       let block = midiBlocks[i]
-      if (i ===0) {
-        scene.add(block)
-        block.position.z -= tempo
-      } else if ( i > 0) {
-        setTimeout(function() {
-          scene.add(block)
-          block.position.z -= tempo
-        }, midiNotes[i].time * 1000)
-      }
 
-        var originPoint = block.position.clone();
+      block.position.z -= tempo
+      // if (i ===0) {
+      //   // scene.add(block)
+      //   block.position.z -= tempo
+      // } else if ( i > 0) {
+      //   setTimeout(function() {
+      //     scene.add(block)
+      //     block.position.z -= tempo
+      //   }, midiNotes[i].time * 1000)
+      // // }
+
+
+
+
+      var originPoint = block.position
   
       var startPos = originPoint.z - block.geometry.parameters.depth/2
       var endPos = originPoint.z + block.geometry.parameters.depth/2
@@ -301,10 +316,10 @@ window.addEventListener('resize', () => {
             continue;
           } else {
             collidable[block.name].active = false
-            // midiBlocks = midiBlocks.slice(midiBlocks.indexOf(block), 1)
             scene.remove(block)
+            // delete midiBlocks[i]
           }
-          collidable[block.name].active = false
+          // collidable[block.name].active = false
         } else if (startPos <= (-2910 + 50) ) {
 
           if (collidable[block.name].active === true) overlap = true;
@@ -319,6 +334,14 @@ window.addEventListener('resize', () => {
     }
     renderer.render(scene,camera);
     requestAnimationFrame(animate);
+
+    // setTimeout( function() {
+
+    //   requestAnimationFrame( animate );
+
+    // }, 5);
+
+    // renderer.render(scene,camera);
   }
 
   function startMusic() {

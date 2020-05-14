@@ -1,4 +1,4 @@
-// self.addEventListener('message', function(block) {
+self.addEventListener('message', function(block) {
 //     debugger
 
 //     var originPoint = block.position.clone();
@@ -29,4 +29,4 @@
         
 //       } 
     
-//   }, false);
+  }, false);
