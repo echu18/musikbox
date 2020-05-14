@@ -43,21 +43,21 @@ function init() {
 
 
   // Add starfield
-  // var starGeo = new THREE.Geometry();
-  // for (let i = 0; i < 1000; i++) {
-  //   var vertex = new THREE.Vector3();
-  //   vertex.x = Math.random()*10000-5000;
-  //   vertex.y = Math.random()*10000-5000;
-  //   vertex.z = Math.random()*10000-5000;
-  //   starGeo.vertices.push(vertex);
-  // }
-  // starField = new THREE.PointCloud(starGeo, new THREE.PointCloudMaterial({
-  //   size: 0.1,
-  //   color: 0xffffff
-  //   })
-  // );
-  // scene.add(starField);
-  // starField.position.z = 100;
+  var starGeo = new THREE.Geometry();
+  for (let i = 0; i < 1000; i++) {
+    var vertex = new THREE.Vector3();
+    vertex.x = Math.random()*10000-5000;
+    vertex.y = Math.random()*10000-5000;
+    vertex.z = Math.random()*10000-5000;
+    starGeo.vertices.push(vertex);
+  }
+  starField = new THREE.PointCloud(starGeo, new THREE.PointCloudMaterial({
+    size: 0.1,
+    color: 0xffffff
+    })
+  );
+  scene.add(starField);
+  starField.position.z = 100;
 
 
 
@@ -65,12 +65,12 @@ function init() {
 
   
   let materialArray = [];
-  // let texture_ft = new THREE.TextureLoader().load( 'images/ellie/posx.jpg');
-  // let texture_bk = new THREE.TextureLoader().load( 'images/ellie/negx.jpg');
-  // let texture_up = new THREE.TextureLoader().load( 'images/ellie/negy.jpg');
-  // let texture_dn = new THREE.TextureLoader().load( 'images/ellie/posy.jpg');
-  // let texture_rt = new THREE.TextureLoader().load( 'images/ellie/posz.jpg');
-  // let texture_lf = new THREE.TextureLoader().load( 'images/ellie/negz.jpg');
+  let texture_ft = new THREE.TextureLoader().load( 'images/ellie/posx.jpg');
+  let texture_bk = new THREE.TextureLoader().load( 'images/ellie/negx.jpg');
+  let texture_up = new THREE.TextureLoader().load( 'images/ellie/negy.jpg');
+  let texture_dn = new THREE.TextureLoader().load( 'images/ellie/posy.jpg');
+  let texture_rt = new THREE.TextureLoader().load( 'images/ellie/posz.jpg');
+  let texture_lf = new THREE.TextureLoader().load( 'images/ellie/negz.jpg');
 
 
   // let texture_ft = new THREE.TextureLoader().load( 'images/galaxy/galaxy-negy.jpg');
@@ -80,19 +80,19 @@ function init() {
   // let texture_rt = new THREE.TextureLoader().load( 'images/galaxy/galaxy-negy.jpg');
   // let texture_lf = new THREE.TextureLoader().load( 'images/galaxy/galaxy-posx.jpg');
         
-  // materialArray.push(new THREE.MeshBasicMaterial( { map: texture_ft }));
-  // materialArray.push(new THREE.MeshBasicMaterial( { map: texture_bk }));
-  // materialArray.push(new THREE.MeshBasicMaterial( { map: texture_up }));
-  // materialArray.push(new THREE.MeshBasicMaterial( { map: texture_dn }));
-  // materialArray.push(new THREE.MeshBasicMaterial( { map: texture_rt }));
-  // materialArray.push(new THREE.MeshBasicMaterial( { map: texture_lf }));
+  materialArray.push(new THREE.MeshBasicMaterial( { map: texture_ft }));
+  materialArray.push(new THREE.MeshBasicMaterial( { map: texture_bk }));
+  materialArray.push(new THREE.MeshBasicMaterial( { map: texture_up }));
+  materialArray.push(new THREE.MeshBasicMaterial( { map: texture_dn }));
+  materialArray.push(new THREE.MeshBasicMaterial( { map: texture_rt }));
+  materialArray.push(new THREE.MeshBasicMaterial( { map: texture_lf }));
  
   
-  // for (let i = 0; i < 6; i++) 
-  // materialArray[i].side = THREE.BackSide;
-  // let skyboxGeo = new THREE.CubeGeometry( 8000, 8000, 8000);
-  // skybox = new THREE.Mesh( skyboxGeo, materialArray );
-  // scene.add( skybox );  
+  for (let i = 0; i < 6; i++) 
+  materialArray[i].side = THREE.BackSide;
+  let skyboxGeo = new THREE.CubeGeometry( 8000, 8000, 8000);
+  skybox = new THREE.Mesh( skyboxGeo, materialArray );
+  scene.add( skybox );  
 
 
 
@@ -221,11 +221,10 @@ function init() {
       cube.position.x = position
       // cube.position.z= 1500; // Position z to make cube front and back
       // cube.position.z= 1500; // Position z to make cube front and back
-      if (i === 0) {
-        cube.position.z = 1500
-      } else {
-        cube.position.z = 1450 + (midiNotes[i].time * (tempo * 60.1))
-      }
+     
+      // cube.position.z = 1500 + (midiNotes[i].time * (tempo * 60.05))
+      cube.position.z = 0 + (midiNotes[i].time * (tempo * 60.03))
+      
 
       midiBlocks[i] = cube;
 
@@ -260,7 +259,8 @@ function init() {
   document.getElementById('start-button').addEventListener('click', 
   function() {
     animate()
-    setTimeout(function(){startMusic()}, 7750);
+    // setTimeout(function(){startMusic()}, 7750);
+    setTimeout(function(){startMusic()}, 5000);
   })
 }
   
@@ -279,11 +279,11 @@ window.addEventListener('resize', () => {
 
 
   function animate() {
-    // skybox.rotation.x -= 0.0008;
+    skybox.rotation.x -= 0.0008;
     // skybox.rotation.y += 0.001;
-    // starField.rotation.x -= 0.001;
-    // starField.rotation.y -= 0.001;
-    // starField.rotation.z += 0.0008;
+    starField.rotation.x -= 0.001;
+    starField.rotation.y -= 0.001;
+    starField.rotation.z += 0.0008;
     
     for (let i=0; i < midiNotes.length; i++) {
 
