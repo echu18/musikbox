@@ -1,17 +1,12 @@
 import midiData from '../starry-drums-test1.js'
-import {createController, collidable} from './controller.js'
-
-
-
-
-
+import {createController, collidable, btns, chars} from './controller.js'
 
 
 var midiNotes = midiData.tracks[0].notes;
 var tempo =  midiData.header.ppq / 10
 
 var group = new THREE.Group()
-let scene, camera, renderer, skybox, starField, cube, midiBlocks = new Object();
+let scene, camera, renderer, skybox, starField, cube, album, midiBlocks = new Object(), gameStart = false;
 
 function init() {
   scene = new THREE.Scene();
@@ -62,23 +57,34 @@ function init() {
 
 
 
-
   
   let materialArray = [];
-  let texture_ft = new THREE.TextureLoader().load( 'images/ellie/posx.jpg');
-  let texture_bk = new THREE.TextureLoader().load( 'images/ellie/negx.jpg');
-  let texture_up = new THREE.TextureLoader().load( 'images/ellie/negy.jpg');
-  let texture_dn = new THREE.TextureLoader().load( 'images/ellie/posy.jpg');
-  let texture_rt = new THREE.TextureLoader().load( 'images/ellie/posz.jpg');
-  let texture_lf = new THREE.TextureLoader().load( 'images/ellie/negz.jpg');
+  let albumArray = [];
+  // album art
+  let album_texture = new THREE.TextureLoader().load( 'images/ellie/posx.jpg');
+  // let texture_bk = new THREE.TextureLoader().load( 'images/ellie/negx.jpg');
+  // let texture_up = new THREE.TextureLoader().load( 'images/ellie/negy.jpg');
+  // let texture_dn = new THREE.TextureLoader().load( 'images/ellie/posy.jpg');
+  // let texture_rt = new THREE.TextureLoader().load( 'images/ellie/posz.jpg');
+  // let texture_lf = new THREE.TextureLoader().load( 'images/ellie/negz.jpg');
+  
+  for (let i = 0; i < 6; i++) {
+    albumArray.push(new THREE.MeshBasicMaterial( { map: album_texture}))
+  }
 
+  let albumGeo = new THREE.CubeGeometry(2000,2000,2000)
+  album = new THREE.Mesh(albumGeo, albumArray);
+  album.position.z = 3000;
+  album.position.y = 1000;
+  scene.add(album)
 
-  // let texture_ft = new THREE.TextureLoader().load( 'images/galaxy/galaxy-negy.jpg');
-  // let texture_bk = new THREE.TextureLoader().load( 'images/galaxy/galaxy-negz.jpg');
-  // let texture_up = new THREE.TextureLoader().load( 'images/galaxy/galaxy-posy.jpg');
-  // let texture_dn = new THREE.TextureLoader().load( 'images/galaxy/galaxy-posz.jpg');
-  // let texture_rt = new THREE.TextureLoader().load( 'images/galaxy/galaxy-negy.jpg');
-  // let texture_lf = new THREE.TextureLoader().load( 'images/galaxy/galaxy-posx.jpg');
+  // bg
+  let texture_ft = new THREE.TextureLoader().load( 'images/galaxy/galaxy-negy.jpg');
+  let texture_bk = new THREE.TextureLoader().load( 'images/galaxy/galaxy-negz.jpg');
+  let texture_up = new THREE.TextureLoader().load( 'images/galaxy/galaxy-posy.jpg');
+  let texture_dn = new THREE.TextureLoader().load( 'images/galaxy/galaxy-posz.jpg');
+  let texture_rt = new THREE.TextureLoader().load( 'images/galaxy/galaxy-negy.jpg');
+  let texture_lf = new THREE.TextureLoader().load( 'images/galaxy/galaxy-posx.jpg');
         
   materialArray.push(new THREE.MeshBasicMaterial( { map: texture_ft }));
   materialArray.push(new THREE.MeshBasicMaterial( { map: texture_bk }));
@@ -223,7 +229,7 @@ function init() {
       // cube.position.z= 1500; // Position z to make cube front and back
      
       // cube.position.z = 1500 + (midiNotes[i].time * (tempo * 60.05))
-      cube.position.z = 0 + (midiNotes[i].time * (tempo * 60.03))
+      cube.position.z = 0 + (midiNotes[i].time * (tempo * 60.01))
       
 
       midiBlocks[i] = cube;
@@ -250,16 +256,14 @@ function init() {
   // // gridHelper.scale.set(2700, 10, 6000)
   // gridHelper.position.z = -1500;
   // scene.add( gridHelper );
-  // animate();
-
-
-
+  // animate()
 
 
   document.getElementById('start-button').addEventListener('click', 
   function() {
     animate()
     // setTimeout(function(){startMusic()}, 7750);
+    gameStart = true;
     setTimeout(function(){startMusic()}, 5000);
   })
 }
@@ -272,10 +276,28 @@ window.addEventListener('resize', () => {
   camera.updateProjectionMatrix();
 })
 
+  var audio = document.getElementById("audio-player");
 
-    var audio = document.getElementById("audio-player");
+
+  function startMusic() {
+    audio.play();
+  }
+
 
   
+
+  // function togglePause(e) {
+  //   e.preventDefault();
+  //   if (e.keyCode === 27) {
+  //     if (audio.pause) {
+  //       gameStart = true;
+  //       audio.play();
+  //     } else {
+  //       gameStart = 'pause'
+  //       audio.pause()
+  //     }
+  //   }
+  // }
 
 
   function animate() {
@@ -284,54 +306,49 @@ window.addEventListener('resize', () => {
     starField.rotation.x -= 0.001;
     starField.rotation.y -= 0.001;
     starField.rotation.z += 0.0008;
-    
-    for (let i=0; i < midiNotes.length; i++) {
-
-      let block = midiBlocks[i]
-
-      block.position.z -= tempo
-      // if (i ===0) {
-      //   // scene.add(block)
-      //   block.position.z -= tempo
-      // } else if ( i > 0) {
-      //   setTimeout(function() {
-      //     scene.add(block)
-      //     block.position.z -= tempo
-      //   }, midiNotes[i].time * 1000)
-      // // }
-
-
-
-
-      var originPoint = block.position
   
-      var startPos = originPoint.z - block.geometry.parameters.depth/2
-      var endPos = originPoint.z + block.geometry.parameters.depth/2
+    
 
-        let overlap = false;
-   
-        if (endPos  <= -2910 ) { 
-          if (!!overlap) {
-            overlap = false;
-            continue;
-          } else {
-            collidable[block.name].active = false
-            scene.remove(block)
-            // delete midiBlocks[i]
-          }
-          // collidable[block.name].active = false
-        } else if (startPos <= (-2910 + 50) ) {
+    if (gameStart === true) {
+      album.rotation.x -= 0.001;
+      album.rotation.y -= 0.001;
+      album.rotation.z -= 0.001;
 
-          if (collidable[block.name].active === true) overlap = true;
+      for (let i=0; i < midiNotes.length; i++) {
+        let block = midiBlocks[i]
 
-          if (overlap) {
-            scene.remove(midiBlocks[i-1])
-            continue;
-          } else {
-            collidable[block.name].active = true
-          }
+        block.position.z -= tempo
+
+        var originPoint = block.position
+    
+        var startPos = originPoint.z - block.geometry.parameters.depth/2
+        var endPos = originPoint.z + block.geometry.parameters.depth/2
+
+          let overlap = false;
+    
+          if (endPos  <= -2910 ) { 
+            if (!!overlap) {
+              overlap = false;
+              continue;
+            } else {
+              collidable[block.name].active = false
+              scene.remove(block)
+              // delete midiBlocks[i]
+            }
+            // collidable[block.name].active = false
+          } else if (startPos <= (-2910 + 50) ) {
+
+            if (collidable[block.name].active === true) overlap = true;
+
+            if (overlap) {
+              scene.remove(midiBlocks[i-1])
+              continue;
+            } else {
+              collidable[block.name].active = true
+            }
+          } 
         } 
-    }
+      } 
     renderer.render(scene,camera);
     requestAnimationFrame(animate);
 
@@ -344,10 +361,149 @@ window.addEventListener('resize', () => {
     // renderer.render(scene,camera);
   }
 
-  function startMusic() {
-    audio.play();
-  }
-
+  
 init();
 
+function togglePause() {
+  if (gameStart === false || gameStart === 'pause'){
+    gameStart = true;
+    audio.play();
+  } else {
+    gameStart = 'pause'
+    audio.pause()
+  }
+}
 
+
+
+  // Key event listeners and actions
+  document.body.addEventListener('keydown', e => keyEvent(e, 'press'));
+  document.body.addEventListener('keyup', e => keyEvent(e, 'release'));
+  
+
+  function keyEvent(e, eventType){
+    if (eventType === 'press' && e.keyCode === 27) {
+      togglePause();
+    }
+      e.preventDefault();
+
+
+      let btn, char, receptor;
+
+      switch(e.keyCode) {
+        case 65:
+          btn = 'btnA'
+          char = 'charA'
+          receptor = 36
+          break;
+        case 83:
+          btn = 'btnS'
+          char = 'charS'
+          receptor = 38
+          break;
+        case 68:
+          btn = 'btnD'
+          char = 'charD'
+          receptor = 40
+          break;
+        case 70:
+          btn = 'btnF'
+          char = 'charF'
+          receptor = 42
+          break;
+        case 71:
+          btn = 'btnG'
+          char = 'charG'
+          receptor = 44
+          break;
+        case 72:
+          btn = 'btnH'
+          char = 'charH'
+          receptor = 46
+          break;
+        case 74:
+          btn = 'btnJ'
+          char = 'charJ'
+          receptor = 48
+          break;
+        case 75:
+          btn = 'btnK'
+          char = 'charK'
+          receptor = 50
+          break;
+        case 76:
+          btn = 'btnL'
+          char = 'charL'
+          receptor = 52
+          break;
+        case 90:
+          btn = 'btnZ'
+          char = 'charZ'
+          receptor = 37
+          break;
+        case 88:
+          btn = 'btnX'
+          char = 'charX'
+          receptor = 39
+          break;
+        case 67:
+          btn = 'btnC'
+          char = 'charC'
+          receptor = 41
+          break;
+        case 86:
+          btn = 'btnV'
+          char = 'charV'
+          receptor = 43
+          break;
+        case 66:
+          btn = 'btnB'
+          char = 'charB'
+          receptor = 45
+          break;
+        case 78:
+          btn = 'btnN'
+          char = 'charN'
+          receptor = 47
+          break;
+        case 77:
+          btn = 'btnM'
+          char = 'charM'
+          receptor = 49
+          break;  
+        case 188:
+          btn = 'btnComma'
+          char = 'charComma'
+          receptor = 51
+          break;
+  
+        default: 
+          break;
+      }
+
+
+      
+
+
+
+      var btnOnColor = new THREE.Color("hsl(330, 70%, 73%)")
+      var btnOffColor = new THREE.Color("hsl(0, 0%, 0%)")
+
+      if (eventType === 'press' && e.keyCode !== 27) {
+        if (collidable[receptor].active === true) {
+          btns[btn].material.emissive.set(btnOnColor)
+        }
+
+        btns[btn].position.y = 10
+        chars[char].position.y = 25
+
+
+
+      } else if (eventType === 'release' && e.keyCode !== 27) {
+        btns[btn].material.emissive.set(btnOffColor)
+
+          btns[btn].position.y = 30
+          chars[char].position.y = 45
+      }
+
+    }
