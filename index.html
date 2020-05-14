@@ -4,22 +4,74 @@
   <meta charset="UTF-8">
   <title>MUSIKBOX</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="ui.css">
 
   <script src='javascripts/three/three.js'></script>
   <script src='javascripts/three/OrbitControls.js'></script>
   <!-- <script src='javascripts/three/three.min.js'></script> -->
+  
 </head>
 
 <body>
 
+  <div class='main-menu'>
+    <h3>MUSIKBOX</h3>
+
+    <h4>To begin, choose a song:</h4>
+
+
+    <div id='song-carousel'>
+        <div class='album-art' data-song-select='starry-eyed'>
+          <img src="images/ellie/posx.jpg">
+            <h3>Starry Eyed</h3>
+            <aside>Artist: Ellie Goulding</aside>
+            <aside>Difficulty: Medium</aside>
+        </div >
+
+        <div class='album-art' data-song-select='starry-eyed'>
+          <img src="images/ellie/posy.jpg">
+            <h3>Nightcrawler</h3>
+            <aside>Artist: Zhu</aside>
+            <aside>Difficulty: Easy</aside>
+        </div >
+
+        <div class='album-art' data-song-select='starry-eyed'>
+          <img src="images/ellie/posz.jpg">
+            <h3>Is It Love</h3>
+            <aside>Artist: 3LAU</aside>
+            <aside>Difficulty: Medium</aside>
+        </div >
+
+        <div class='album-art' data-song-select='starry-eyed'>
+          <img src="images/ellie/negz.jpg">
+            <h3>Clarity</h3>
+            <aside>Artist: Zedd</aside>
+            <aside>Difficulty: Medium</aside>
+        </div >
+
+        <div class='album-art' data-song-select='starry-eyed'>
+          <img src="images/ellie/negx.jpg">
+            <h3>Runaway</h3>
+            <aside>Artist: Galantis</aside>
+            <aside>Difficulty: Easy</aside>
+        </div >
+    </div>
+  </div>
+
+
+  <div class='paused-menu'></div>
+
+
+  <div class='end-menu'></div>
+
   
 
   <audio id='audio-player' controls>
-    <source src="audio/starry-eyed/starry-eyed-nodrums.mp3" type="audio/wav">
+    <source src="audio/starry-eyed/starry-eyed-nodrums.mp3" type="audio/wav" loop=false>
   Your browser does not support the audio element.
   </audio>
 
-  <div class="keys-container">
+  <!-- <div class="keys-container">
     <div class="keys">
 
       <div data-key="65" class="key">
@@ -95,7 +147,7 @@
         <span class="sound">#</span>
       </div>
     </div>
-  </div>
+  </div> -->
 
   <audio data-key="65" src="audio/starry-eyed/drums/tick.wav"></audio>
   <audio data-key="83" src="audio/starry-eyed/drums/closed-hat.wav"></audio>
@@ -143,7 +195,6 @@
 
 </script>
 
-<!-- <script  src="/javascripts/starfield.js"></script> -->
 
 
 <div class='canvas'>

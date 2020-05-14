@@ -1,0 +1,47 @@
+.main-menu {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 500px;
+    width: 800px;
+    background: rgba(31, 7, 99, 0.9);
+    border-radius: 15px;
+    z-index: 1000;
+    padding: 20px;
+    
+    color: whitesmoke
+}
+
+.main-menu > h3 {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 120px;
+    margin: 0px;
+}
+
+#song-carousel {
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+    /* flex-direction: row; */
+    height: 100%;
+    width:100%;
+    margin: 0;
+}
+
+.album-art > img {
+    max-height: 200px;
+    max-width: 200px;
+}
+
+.album-art {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
