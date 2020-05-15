@@ -76,18 +76,26 @@
     text-align: center;
     /* line-height: 200px;
     background: blue; */
-    transform: rotateY(30deg)
+    transform: rotateY(30deg);
+    transition: all 0.5s ease;
+}
+
+.rotate-left-album::after{
+    transform: rotateY(0deg);
 }
 
 
 .centered-album{
     text-align: center;
     z-index: 100 !important;
-    transition: all 0.3s ease-in-out;
+    transition: all 0.5s ease-in-out;
+    animation-name: spotlight-album;
+    animation-duration: 0.5s;
 }
 
 .centered-album > img {
     transform: scale(1.2);
+    margin: 0px 50px 0px 50px;
     box-shadow: 0px 0px 20px 3px black;
 }
 
@@ -101,11 +109,16 @@
     /* line-height: 200px;
     background: blue; */
     transform: rotateY(-30deg); 
-    transition: all 0.3 ease-in-out;
-    box-shadow: 0px 0px 20px 3px black;
-
+    transition: all 0.5s ease;
 }
 
 .rotate-right-album::after{
     transform: rotateY(0deg);
 }
+
+
+@keyframes spotlight-album {
+    from {margin: 0;}
+    to {margin: 0 20px 0 20px;}
+  }
+  

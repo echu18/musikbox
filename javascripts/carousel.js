@@ -10,9 +10,12 @@ updateCarousel();
 
 function animateAlbumCarousel(direction){
         if (direction === 'previous') {
+            if (currentIdx === 0) return;
             $(songs[currentIdx]).removeClass('centered-album')
             currentIdx = (currentIdx - 1) % songs.length
         } else if (direction ==='next') {
+            if (currentIdx === songs.length-1) return;
+
             $(songs[currentIdx]).removeClass('centered-album')
             currentIdx = (currentIdx + 1) % songs.length
         }
@@ -25,20 +28,22 @@ function updateCarousel(){
         var current = songs[currentIdx];
         var rightSide = currentIdx === songs.length-1 ? songs[songs.length-1] : songs.slice(currentIdx+1);
 
-
-
-
         $(current).removeClass('rotate-left-album rotate-right-album').addClass('centered-album')
+
+        for (let i=0; i < current.children.length; i++) {
+            $(current.children[i]).show()
+        }
+       
 
         for (let i=0; i < leftSide.length; i++) {
             $(leftSide[i]).css("z-index", i)
         }
 
-        for (let j=rightSide.length-1; j > 0; j--) {
-            $(rightSide[j]).css("z-index", -1 *j)
+        for (let j=rightSide.length-1; j >= 0; j--) {
+            $(rightSide[j]).css("z-index", -1 * j)
         }
 
-        leftSide.forEach(element => {
+        if (leftSide.length > 0) { leftSide.forEach(element => {
             $(element).addClass("rotate-left-album")
             
             var children = Object.values(element.children);
@@ -46,9 +51,10 @@ function updateCarousel(){
             for (let i=0; i < children.length; i++) {
                 if (!$(children[i]).is('img')) $(children[i]).hide()
             }
-        });
+            });
+        }
 
-        rightSide.forEach(element => {
+        if (rightSide.length > 0) {rightSide.forEach(element => {
             $(element).addClass("rotate-right-album")
 
             var children = Object.values(element.children);
@@ -57,5 +63,6 @@ function updateCarousel(){
                 if (!$(children[i]).is('img')) $(children[i]).hide()
             }
         });
+    }
 
 }
