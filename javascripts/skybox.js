@@ -289,7 +289,7 @@ window.addEventListener('blur', function(){
 
 
 export function togglePause() {
-   if ((gameStart === false || gameStart === 'pause') && audio.paused){
+   if ((gameStart === false || gameStart === 'pause') && audio.paused && !$(".end-menu").is(":visible")){
     gameStart = true;
     audio.play();
     togglePauseMenu()

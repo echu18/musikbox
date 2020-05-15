@@ -5,7 +5,28 @@ var songNodes = document.querySelectorAll(".album-art")
 var songs = Array.from(songNodes).map((song) => song)
 var currentIdx = currentIdx || Math.floor(songs.length/2);
 
+// for (let i =0; i < songNodes.length-1; i++){
+//     songNodes[i].addEventListener, ('click', function(){
+//         console.log('hi')
+//         // currentIdx = songNodes.indexOf(song)
+//         // updateCarousel();
+//     })
+// }
 updateCarousel();
+
+$('.album-art').on('click', 'img', function(event) {
+    event.preventDefault();
+
+    // $(songs[currentIdx]).removeClass('centered-album')
+
+    songs.forEach(song => $(song).removeClass("rotate-left-album centered-album rotate-right-album"))
+
+    var currentSong = $(this).closest("div")
+    currentIdx = songs.indexOf(currentSong[0])
+    updateCarousel();
+});
+
+
 
 
 function animateAlbumCarousel(direction){
