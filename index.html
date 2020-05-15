@@ -24,21 +24,21 @@
 
     <div id='song-carousel'>
         <div class='album-art' data-song-select='starry-eyed'>
-          <img class='rotate-left-album' src="images/ellie/posx.jpg">
+          <img class='' src="images/ellie/posx.jpg">
             <h3>Starry Eyed</h3>
             <aside>Artist: Ellie Goulding</aside>
             <aside>Difficulty: Medium</aside>
         </div >
 
         <div class='album-art' data-song-select='starry-eyed'>
-          <img class='rotate-left-album' src="images/ellie/posy.jpg">
+          <img class='' src="images/ellie/posy.jpg">
             <h3>Juliet & Romeo</h3>
             <aside>Artist: Martin Solveig</aside>
             <aside>Difficulty: Easy</aside>
         </div >
 
         <div class='album-art' data-song-select='starry-eyed'>
-          <img class='rotate-left-album' src="images/ellie/posz.jpg">
+          <img class='' src="images/ellie/posz.jpg">
             <h3>Is It Love</h3>
             <aside>Artist: 3LAU</aside>
             <aside>Difficulty: Medium</aside>
@@ -57,6 +57,8 @@
             <aside>Artist: Galantis</aside>
             <aside>Difficulty: Easy</aside>
         </div >
+        <button onclick='animateAlbumCarousel("next")' class= 'next-btn'>Next</button>
+        <button onclick='animateAlbumCarousel("previous")'class= 'previous-btn'>Previous</button>
     </div>
 
 
@@ -137,7 +139,8 @@
   window.addEventListener('keydown', playSound);
 
   </script>
-
+  
+  <script src='javascripts/carousel.js'></script>
     <script type='module' src='javascripts/controller.js'></script>
     <script type='module' src='javascripts/skybox.js'></script>
     <script type='module' src='/javascripts/menu.js'></script>
