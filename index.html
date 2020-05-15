@@ -15,7 +15,7 @@
 </head>
 
 <body>
-
+  <div class='canvas'>
   <div class='main-menu'>
     <h3>MUSIKBOX</h3>
 
@@ -24,21 +24,21 @@
 
     <div id='song-carousel'>
         <div class='album-art' data-song-select='starry-eyed'>
-          <img src="images/ellie/posx.jpg">
+          <img class='rotate-left-album' src="images/ellie/posx.jpg">
             <h3>Starry Eyed</h3>
             <aside>Artist: Ellie Goulding</aside>
             <aside>Difficulty: Medium</aside>
         </div >
 
         <div class='album-art' data-song-select='starry-eyed'>
-          <img src="images/ellie/posy.jpg">
-            <h3>Nightcrawler</h3>
-            <aside>Artist: Zhu</aside>
+          <img class='rotate-left-album' src="images/ellie/posy.jpg">
+            <h3>Juliet & Romeo</h3>
+            <aside>Artist: Martin Solveig</aside>
             <aside>Difficulty: Easy</aside>
         </div >
 
         <div class='album-art' data-song-select='starry-eyed'>
-          <img src="images/ellie/posz.jpg">
+          <img class='rotate-left-album' src="images/ellie/posz.jpg">
             <h3>Is It Love</h3>
             <aside>Artist: 3LAU</aside>
             <aside>Difficulty: Medium</aside>
@@ -61,6 +61,9 @@
 
 
     <button id='start-button'>Start</button>
+
+    <button>??</button>
+    <button>volume adjust</button>
 
   </div>
 
@@ -133,18 +136,19 @@
   // keys.forEach(key => key.addEventListener('transitionend', removeTransition));
   window.addEventListener('keydown', playSound);
 
-</script>
+  </script>
 
-
-
-  <div class='canvas'>
     <script type='module' src='javascripts/controller.js'></script>
     <script type='module' src='javascripts/skybox.js'></script>
     <script type='module' src='/javascripts/menu.js'></script>
+    
+    
+    <h3 id='escape-pause'>
+      Esc
+    </h3>
+    
   </div>
-
-
-</body>
+  </body>
 </html>
 
 

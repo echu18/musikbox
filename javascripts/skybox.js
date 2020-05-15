@@ -1,4 +1,4 @@
-import midiData from '../starry-drums-test1.js'
+import midiData from '../midi/starry-eyed/starry-eyed-medium.js'
 import {createController, collidable, btns, chars} from './controller.js'
 import {togglePauseMenu} from '../javascripts/menu.js'
 
@@ -34,7 +34,7 @@ function init() {
   document.body.appendChild(renderer.domElement);
   
   var controls = new THREE.OrbitControls(camera, renderer.domElement);
-  // controls.enabled = false;
+  controls.enabled = false;
 
   // let controls = new THREE.OrbitControls(camera);
   controls.addEventListener('change', renderer);
@@ -271,7 +271,7 @@ function() {
   
   gameStart = true;
   // setTimeout(function(){startMusic()}, 5000);
-  setTimeout(function(){startMusic()}, 2000);
+  setTimeout(function(){startMusic()}, 1800);
 
   audio.onended = function(){
     gameStart = false;
@@ -404,7 +404,32 @@ export function stopGame(){
 
 
 
+var elem = document.documentElement;
+function toggleFullScreen(){
 
+  if (!document.fullscreenElement && !document.mozFullScreenElement &&
+    !document.webkitFullscreenElement && !document.msFullscreenElement) {
+    if (elem.requestFullscreen) {
+      elem.requestFullscreen();
+    } else if (elem.msRequestFullscreen) {
+      elem.msRequestFullscreen();
+    } else if (elem.mozRequestFullScreen) {
+      elem.mozRequestFullScreen();
+    } else if (elem.webkitRequestFullscreen) {
+      elem.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
+    }
+  } else {
+    if (document.exitFullscreen) {
+      document.exitFullscreen();
+    } else if (document.msExitFullscreen) {
+      document.msExitFullscreen();
+    } else if (document.mozCancelFullScreen) {
+      document.mozCancelFullScreen();
+    } else if (document.webkitExitFullscreen) {
+      document.webkitExitFullscreen();
+    }
+  }
+}
 
 
 
@@ -417,10 +442,12 @@ export function stopGame(){
   
 
   function keyEvent(e, eventType){
+    e.preventDefault();
     if (eventType === 'press' && (e.keyCode === 27 || e.keyCode === 179) && !$(".main-menu").is(":visible")) {
       togglePause();
+    } else if (eventType === 'press' && (e.keyCode === 112)){
+      toggleFullScreen();
     }
-      e.preventDefault();
 
 
       let btn, char, receptor;

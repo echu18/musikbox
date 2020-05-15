@@ -234,7 +234,7 @@ let controller;
       var receptorColor = new THREE.Color("hsl(303, 100%, 68%)")
 
     // Create keyboard buttons and receptors
-      var btnA = new THREE.Mesh(btnGeometry, new THREE.MeshPhongMaterial({emissive: btnColor, shininess: 100,
+      var btnA = new THREE.Mesh(btnGeometry, new THREE.MeshPhongMaterial({color: btnColor, shininess: 100,
       flatShading: true}));
         btnA.position.set(1200, 30, -3000);
       
