@@ -280,6 +280,14 @@ function() {
 })
 
 
+window.addEventListener('blur', function(){
+
+  if (gameStart === true){
+    togglePause();
+  }
+});
+
+
 export function togglePause() {
    if ((gameStart === false || gameStart === 'pause') && audio.paused){
     gameStart = true;
