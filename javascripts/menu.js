@@ -1,4 +1,4 @@
-import {stopGame} from './skybox.js'
+import {stopGame} from './main.js'
 
 // Init
 $('.pause-menu').hide()

@@ -9,12 +9,15 @@
   <script src='javascripts/three/three.js'></script>
   <script src='javascripts/three/OrbitControls.js'></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <!-- <script  type='module' src='javascripts/carousel.js'></script> -->
+
 
   <!-- <script src='javascripts/three/three.min.js'></script> -->
   
 </head>
 
 <body>
+
   <div class='canvas'>
   <div class='main-menu'>
     <h3>MUSIKBOX</h3>
@@ -30,8 +33,8 @@
             <aside>Difficulty: Medium</aside>
         </div >
 
-        <div class='album-art' data-song-select='starry-eyed'>
-          <img class='' src="images/ellie/posy.jpg">
+        <div class='album-art' data-song-select='juliet-romeo'>
+          <img class='' src="images/juliet-romeo.jpg">
             <h3>Juliet & Romeo</h3>
             <aside>Artist: Martin Solveig</aside>
             <aside>Difficulty: Easy</aside>
@@ -60,8 +63,8 @@
 
       </div>
       
-      <button onclick='animateAlbumCarousel("next")' class= 'next-btn'>Next</button>
-      <button onclick='animateAlbumCarousel("previous")'class= 'previous-btn'>Previous</button>
+      <!-- <button onclick='animateAlbumCarousel("next")' class= 'next-btn'>Next</button>
+      <button onclick='animateAlbumCarousel("previous")'class= 'previous-btn'>Previous</button> -->
 
     <button id='start-button'>Start</button>
 
@@ -88,8 +91,8 @@
 
   
 
-  <audio id='audio-player' controls>
-    <source src="audio/starry-eyed/starry-eyed-nodrums.mp3" type="audio/wav" loop=false>
+  <audio id='audio-player'>
+    <source src="" type="audio/wav" loop=false>
   Your browser does not support the audio element.
   </audio>
 
@@ -114,7 +117,7 @@
   <audio data-key="78" src="audio/starry-eyed/drums/snap2.wav"></audio>
 
   <audio data-key="77" src="audio/starry-eyed/drums/snap3.wav"></audio>
-  <audio data-key="188" src="audio/starry-eyed/drums/snap3.wav"></audio>
+  <audio data-key="188" src="audio/starry-eyed/drums/tom-double.wav"></audio>
 
 
 
@@ -141,9 +144,10 @@
 
   </script>
   
-  <script src='javascripts/carousel.js'></script>
+  <script  type='module' src='javascripts/carousel.js'></script>
+  <script  type='module' src='javascripts/imports.js'></script>
     <script type='module' src='javascripts/controller.js'></script>
-    <script type='module' src='javascripts/skybox.js'></script>
+    <script type='module' src='javascripts/main.js'></script>
     <script type='module' src='/javascripts/menu.js'></script>
     
     

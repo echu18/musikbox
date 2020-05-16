@@ -1,4 +1,5 @@
-export default {
+export const starryEyed = {
+
   "header": {
     "keySignatures": [],
     "meta": [],

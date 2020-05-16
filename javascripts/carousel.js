@@ -1,3 +1,7 @@
+import {selectTrack} from './imports.js';
+import {startGame} from './main.js'
+
+
 
 let leftSide, current, rightSide;
 
@@ -5,13 +9,8 @@ var songNodes = document.querySelectorAll(".album-art")
 var songs = Array.from(songNodes).map((song) => song)
 var currentIdx = currentIdx || Math.floor(songs.length/2);
 
-// for (let i =0; i < songNodes.length-1; i++){
-//     songNodes[i].addEventListener, ('click', function(){
-//         console.log('hi')
-//         // currentIdx = songNodes.indexOf(song)
-//         // updateCarousel();
-//     })
-// }
+
+
 updateCarousel();
 
 $('.album-art').on('click', 'img', function(event) {
@@ -29,7 +28,7 @@ $('.album-art').on('click', 'img', function(event) {
 
 
 
-function animateAlbumCarousel(direction){
+export function animateAlbumCarousel(direction){
         if (direction === 'previous') {
             if (currentIdx === 0) return;
             $(songs[currentIdx]).removeClass('centered-album')
@@ -85,5 +84,17 @@ function updateCarousel(){
             }
         });
     }
-
 }
+debugger
+let songName;
+
+document.getElementById('start-button').addEventListener('click', 
+function selectStart(e){
+    e.preventDefault();
+    debugger
+    songName = songNodes[currentIdx].dataset.songSelect
+    
+    
+    if (!!selectTrack(songName))  startGame()
+ 
+})
