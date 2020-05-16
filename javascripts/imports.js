@@ -12,7 +12,7 @@ let albumPath, audioPath, midiData;
 
 
 export function selectTrack(songName){
-    debugger
+    
     switch (songName){
         case 'starry-eyed':
             albumPath =  'images/ellie/posx.jpg';
@@ -24,6 +24,11 @@ export function selectTrack(songName){
             midiData = julietTest;
             audioPath = 'audio/songs-arcade/juliet-romeo.mp3';
             break;
+        case 'is-it-love':
+            albumPath = 'images/3lau.jpg'
+            midiData = julietTest;
+            audioPath = 'audio/songs-arcade/is-it-love.mp3';
+            break;
     }
 
     var audioPlayer = document.querySelector("#audio-player")
@@ -31,16 +36,11 @@ export function selectTrack(songName){
     $(audioPlayer).attr("src", audioPath)
     
     if (!!albumPath && !!midiData ) {
-        debugger
+        
         startGame(albumPath, midiData)
     }
 }    
 
-
-
-// debugger
-// export const albumFile =  albumPath
-// export const midiData = midiPath;
 
 
 

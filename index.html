@@ -18,6 +18,11 @@
 
 <body>
 
+  <audio id='audio-preview'>
+    <source src="" type="audio/wav" loop=false>
+     browser does not support the audio element.
+  </audio>
+
   <div class='canvas'>
   <div class='main-menu'>
     <h3>MUSIKBOX</h3>
@@ -40,8 +45,8 @@
             <aside>Difficulty: Easy</aside>
         </div >
 
-        <div class='album-art' data-song-select='starry-eyed'>
-          <img class='' src="images/ellie/posz.jpg">
+        <div class='album-art' data-song-select='is-it-love'>
+          <img class='' src="images/3lau.jpg">
             <h3>Is It Love</h3>
             <aside>Artist: 3LAU</aside>
             <aside>Difficulty: Medium</aside>
@@ -66,10 +71,10 @@
       <!-- <button onclick='animateAlbumCarousel("next")' class= 'next-btn'>Next</button>
       <button onclick='animateAlbumCarousel("previous")'class= 'previous-btn'>Previous</button> -->
 
-    <button id='start-button'>Start</button>
+    <button id='start-btn'>Start</button>
 
-    <button>??</button>
-    <button>volume adjust</button>
+    <button id='help-btn'>??</button>
+    <button id='volume-btn'>volume adjust</button>
 
   </div>
 

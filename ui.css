@@ -40,6 +40,16 @@
     align-items: center;
 }
 
+.album-art:hover {
+    cursor: pointer;
+}
+
+
+.album-art > h3 {
+    margin-top: 40px;
+}
+
+
 #escape-pause {
     position: absolute;
     bottom: 0;
@@ -52,6 +62,7 @@
 }
 
 #song-carousel {
+    position: relative;
     font-size: 14px;
     display: flex;
     justify-content: center;
@@ -126,3 +137,38 @@
     100% {margin: 0;}
   }
   
+
+
+#help-btn, #volume-btn {
+      font-size: 14px;
+      border-style: none;
+      height: 50px;
+      z-index: 100;
+    background-color: white;
+  }
+
+
+
+  #start-btn {
+    position: absolute;
+    right: 5px;
+    bottom: 5px;
+    margin: 0;
+  }
+
+  #help-btn {
+    position: absolute;
+    left: 5px;
+    bottom: 5px;
+    margin: 0;
+  }
+
+  #volume-btn {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    margin: 0;
+  }
+
+
+

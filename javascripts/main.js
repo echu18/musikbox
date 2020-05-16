@@ -230,7 +230,7 @@ export function initScene(albumPath, midiData) {
      
       // cube.position.z = 1500 + (midiNotes[i].time * (tempo * 60.05))
       // cube.position.z = 0 + (midiNotes[i].time * (tempo * 60))
-      cube.position.z = (midiNotes[0].time * -137) + (midiNotes[i].time * (tempo * 60))
+      cube.position.z = (midiNotes[0].time * -138) + (midiNotes[i].time * (tempo * 60))
       
 
       midiBlocks[i] = cube;
@@ -265,7 +265,6 @@ export function initScene(albumPath, midiData) {
   var audio = document.querySelector("#audio-player")
 
   function startMusic() {
-    debugger
     audio.play();
     gameStart = true;
   }

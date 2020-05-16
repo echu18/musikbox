@@ -9,6 +9,7 @@ var songNodes = document.querySelectorAll(".album-art")
 var songs = Array.from(songNodes).map((song) => song)
 var currentIdx = currentIdx || Math.floor(songs.length/2);
 
+var audioPreview = document.getElementById('audio-preview')
 
 
 updateCarousel();
@@ -16,12 +17,20 @@ updateCarousel();
 $('.album-art').on('click', 'img', function(event) {
     event.preventDefault();
 
-    // $(songs[currentIdx]).removeClass('centered-album')
-
+    if (!!audioPreview) audioPreview.pause()
+    
     songs.forEach(song => $(song).removeClass("rotate-left-album centered-album rotate-right-album"))
 
     var currentSong = $(this).closest("div")
     currentIdx = songs.indexOf(currentSong[0])
+
+
+    var previewName = songNodes[currentIdx].dataset.songSelect
+    $(audioPreview).attr("src", 'audio/previews/' + previewName + '-preview.wav')
+    
+    audioPreview.volume = 0.9
+    audioPreview.play()
+
     updateCarousel();
 });
 
@@ -85,16 +94,16 @@ function updateCarousel(){
         });
     }
 }
-debugger
+
 let songName;
 
-document.getElementById('start-button').addEventListener('click', 
+document.getElementById('start-btn').addEventListener('click', 
 function selectStart(e){
     e.preventDefault();
-    debugger
+    
     songName = songNodes[currentIdx].dataset.songSelect
     
-    
+    if (!!audioPreview) audioPreview.pause()
     if (!!selectTrack(songName))  startGame()
  
 })
