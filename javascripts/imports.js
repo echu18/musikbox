@@ -2,8 +2,9 @@
 
 
 
-import {starryEyed} from '../midi/starry-eyed/starry-eyed-medium.js';
-import {julietTest} from '../midi/juliet-test.js';
+import {starryEyed} from '../midi/starry-eyed/starry-eyed-midi.js';
+// import {julietRomeo} from '../midi/juliet-romeo-midi.js';
+import {julietRomeo} from '../midi/juliet-test2-midi.js';
 import { startGame } from './main.js';
 
 
@@ -21,12 +22,12 @@ export function selectTrack(songName){
             break;
         case 'juliet-romeo':
             albumPath = 'images/juliet-romeo.jpg'
-            midiData = julietTest;
+            midiData = julietRomeo;
             audioPath = 'audio/songs-arcade/juliet-romeo.mp3';
             break;
         case 'is-it-love':
             albumPath = 'images/3lau.jpg'
-            midiData = julietTest;
+            midiData = julietRomeo;
             audioPath = 'audio/songs-arcade/is-it-love.mp3';
             break;
     }

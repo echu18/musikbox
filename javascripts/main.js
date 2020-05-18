@@ -5,7 +5,7 @@ import {togglePauseMenu} from './menu.js'
 // import {midiData, albumFile} from './imports.js'
 
 
-let midiNotes, tempo;
+let midiNotes, tempo, ppq;
 
 let scene, projector, controls, camera, renderer, skybox, starField, cube, album, albumTexture, midiBlocks = new Object();
 
@@ -16,9 +16,12 @@ var gameStart = false;
 
 
 export function initScene(albumPath, midiData) {
-  debugger
+  
   midiNotes = midiData.tracks[0].notes;
-  tempo =  midiData.header.ppq / 10
+
+  ppq =  midiData.header.ppq/10
+  tempo =  midiData.header.bpm/10
+  // tempo =  midiData.header.bpm/60
 
 
   scene = new THREE.Scene();
@@ -225,12 +228,29 @@ export function initScene(albumPath, midiData) {
 
       var position = (44 - midiKey) * 150
       cube.position.x = position
+
+
+
+      var offset = 60 * tempo
       // cube.position.z= 1500; // Position z to make cube front and back
       // cube.position.z= 1500; // Position z to make cube front and back
      
-      // cube.position.z = 1500 + (midiNotes[i].time * (tempo * 60.05))
-      // cube.position.z = 0 + (midiNotes[i].time * (tempo * 60))
-      cube.position.z = (midiNotes[0].time * -138) + (midiNotes[i].time * (tempo * 60))
+      // cube.position.z = 0 + (midiNotes[i].time * (ppq * 60)) -2910*.96
+      // cube.position.z = ((midiNotes[0].time * -150) + (midiNotes[i].time * (ppq * 60)) ) +50  works for starry eyed
+      // cube.position.z = ((midiNotes[0].time * -100) + (midiNotes[i].time * (tempo * 60)) )
+      cube.position.z = (midiNotes[i].time * 732) -2910
+      // cube.position.z = (midiNotes[i].time  * tempo *  60) -2910/4
+      
+      // - 2910
+
+    
+    // cube.position.z = startPos + (midiNotes[i].time * tempo * 60) 
+
+      // cube.position.z = (midiNotes[0].time * -(tempo * 60)) + (midiNotes[i].time * tempo * 60) + (4*tempo*60) -50
+      // works
+      // kinda works, slow then fast on juliet
+      // cube.position.z = (midiNotes[i].time * tempo * tempo * 4) - ((midiNotes[0].time*122)/(tempo*10) *96)
+
       
 
       midiBlocks[i] = cube;
@@ -249,14 +269,14 @@ export function initScene(albumPath, midiData) {
 
     // Grid
 
-  // var size = 2700;
-  // var divisions = 17;
-  // var colorGrid = new THREE.Color("hsl(260, 81%, 86%)")
+  var size = 2700;
+  var divisions = 8;
+  var colorGrid = new THREE.Color("hsl(260, 81%, 86%)")
   
-  // var gridHelper = new THREE.GridHelper(size, divisions, colorGrid  );
-  // // gridHelper.scale.set(2700, 10, 6000)
-  // gridHelper.position.z = -1500;
-  // scene.add( gridHelper );
+  var gridHelper = new THREE.GridHelper(size, divisions, colorGrid  );
+  // gridHelper.scale.set(2700, 10, 6000)
+  gridHelper.position.z = -1500;
+  scene.add( gridHelper );
   animate()
 }
 
@@ -275,9 +295,12 @@ export function startGame(albumPath, midiData) {
 
   initScene(albumPath, midiData);
   
+  // setTimeout(function(){startMusic()}, 4500);
+  // setTimeout(function(){startMusic()}, 500);
   gameStart = true;
-  // setTimeout(function(){startMusic()}, 5000);
-  setTimeout(function(){startMusic()}, 1800);
+  // setTimeout(function(){startMusic()}, 1500); works for starry eyed
+  setTimeout(function(){startMusic()},500); 
+  // startMusic()
 
   audio.onended = function(){
     gameStart = false;
@@ -288,7 +311,7 @@ export function startGame(albumPath, midiData) {
 
 window.addEventListener('blur', function(){
 
-  if (gameStart === true){
+  if (gameStart === true && !!audio){
     togglePause();
   }
 });
@@ -368,8 +391,10 @@ export function stopGame(){
 
       for (let i=0; i < midiNotes.length; i++) {
         let block = midiBlocks[i]
-
+        // debugger
+        // block.position.z -= 10
         block.position.z -= tempo
+        // block.position.z -= ppq
 
         var originPoint = block.position
     
@@ -386,16 +411,16 @@ export function stopGame(){
               collidable[block.name].active = false
               scene.remove(block)
             }
-          } else if (startPos <= (-2910 + 50) ) {
+          } else if (startPos <= (-2910 + 80) ) {
 
             if (collidable[block.name].active === true) overlap = true;
 
-            if (overlap) {
-              scene.remove(midiBlocks[i-1])
-              continue;
-            } else {
+            // if (overlap) {
+            //   scene.remove(midiBlocks[i-1])
+            //   continue;
+            // } else {
               collidable[block.name].active = true
-            }
+            // }
           } 
         } 
       } 

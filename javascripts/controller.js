@@ -212,7 +212,7 @@ let controller;
 
 
       // Buttons
-      var btnGeometry = new THREE.CubeGeometry(140, 60, 100);
+      var btnGeometry = new THREE.CubeGeometry(150, 60, 100);
       // var btnMaterial = new THREE.MeshPhongMaterial({
       //   // ambient: 0x555555,
       //   color: new THREE.Color("hsl(185, 81%, 60%)"),
@@ -225,7 +225,7 @@ let controller;
 
 
       // var receptorGeo = new THREE.BoxGeometry( 140, 60, 100, 1, 1, 1 );
-      var receptorGeo = new THREE.CubeGeometry( 140, 60, 1, 1, 1, 1 );
+      var receptorGeo = new THREE.CubeGeometry( 140, 70, 1, 1, 1, 1 );
       // var wallMaterial = new THREE.MeshBasicMaterial( {color: 0x8888ff} );
 	    // var wireMat = new THREE.MeshPhongMaterial( { emissive: receptorColor, wireframe:true,  specular: 0x555555, shininess: 100,
       // flatShading: true } );

@@ -5,7 +5,7 @@ export const starryEyed = {
     "meta": [],
     "name": "FINAL MIDI\u0000",
     "ppq": 96,
-    "tempos": [],
+    "bpm": 150,
     "timeSignatures": [
       {
         "ticks": 0,

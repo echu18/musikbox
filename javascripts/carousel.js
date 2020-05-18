@@ -57,8 +57,7 @@ function updateCarousel(){
         var current = songs[currentIdx];
         var rightSide = currentIdx === songs.length-1 ? songs[songs.length-1] : songs.slice(currentIdx+1);
 
-        $(current).removeClass('rotate-left-album rotate-right-album').addClass('centered-album')
-
+        $(current).addClass('centered-album').removeClass('rotate-left-album rotate-right-album')
         for (let i=0; i < current.children.length; i++) {
             $(current.children[i]).show()
         }
