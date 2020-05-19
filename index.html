@@ -105,8 +105,8 @@
 
   <div class='end-menu'>
     <p>Great jam session!</p>
-    <p>Here's your score</p>
-    <p>123456789</p>
+    <p>Here's your score:</p>
+    <p class='end-score'></p>
 
     <button class='back-to-main-btn'>Main Menu</button>
   </div>
@@ -119,6 +119,8 @@
   </audio>
 
  
+
+
 
   <audio data-key="65" src="audio/starry-eyed/drums/tick.wav"></audio>
   <audio data-key="83" src="audio/starry-eyed/drums/closed-hat.wav"></audio>
@@ -172,7 +174,12 @@
     <script type='module' src='javascripts/main.js'></script>
     <script type='module' src='/javascripts/menu.js'></script>
     
-    
+    <div class='score-container'>
+      <h3>Score:</h3>
+      <p id='score'>0</p>
+    </div>
+
+
     <h3 id='escape-pause'>
       Esc
     </h3>

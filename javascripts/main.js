@@ -1,15 +1,16 @@
 // import midiData from '../midi/starry-eyed/starry-eyed-medium.js'
 import {createController, collidable, btns, chars} from './controller.js'
 import {togglePauseMenu} from './menu.js'
+import { starryEyed } from '../midi/starry-eyed/starry-eyed-midi.js';
 
 // import {midiData, albumFile} from './imports.js'
 
 
-let midiNotes, tempo, ppq;
+let midiNotes, tempo, ppq, bpm;
 
 let scene, projector, controls, camera, renderer, skybox, starField, cube, album, albumTexture, midiBlocks = new Object();
 
-
+let score = 0;
 
 
 var gameStart = false;
@@ -20,8 +21,8 @@ export function initScene(albumPath, midiData) {
   midiNotes = midiData.tracks[0].notes;
 
   ppq =  midiData.header.ppq/10
-  tempo =  midiData.header.bpm/10
-  // tempo =  midiData.header.bpm/60
+  bpm =  midiData.header.bpm/10
+  tempo =  midiData.header.bpm/60
 
 
   scene = new THREE.Scene();
@@ -230,21 +231,23 @@ export function initScene(albumPath, midiData) {
       cube.position.x = position
 
 
-
-      var offset = 60 * tempo
+      
+      var speed = 60 * tempo
       // cube.position.z= 1500; // Position z to make cube front and back
       // cube.position.z= 1500; // Position z to make cube front and back
      
       // cube.position.z = 0 + (midiNotes[i].time * (ppq * 60)) -2910*.96
-      // cube.position.z = ((midiNotes[0].time * -150) + (midiNotes[i].time * (ppq * 60)) ) +50  works for starry eyed
-      // cube.position.z = ((midiNotes[0].time * -100) + (midiNotes[i].time * (tempo * 60)) )
-      cube.position.z = (midiNotes[i].time * 732) -2910
+      // cube.position.z = (midiNotes[i].time * tempo * bpm * 60)
+      // cube.position.z = ((midiNotes[0].time * -(bpm * 10) ) + (midiNotes[i].time * (ppq * 60)) ) 
+      cube.position.z = ((midiNotes[0].time * -150)) + (midiNotes[i].time * (ppq * 60))
+      // cube.position.z =  (midiNotes[i].time * (tempo * 60)) - 1000
+      // cube.position.z = (midiNotes[i].time * 732) -2910
+      // cube.position.z = (midiNotes[i].time * 930) -2910
       // cube.position.z = (midiNotes[i].time  * tempo *  60) -2910/4
       
       // - 2910
 
     
-    // cube.position.z = startPos + (midiNotes[i].time * tempo * 60) 
 
       // cube.position.z = (midiNotes[0].time * -(tempo * 60)) + (midiNotes[i].time * tempo * 60) + (4*tempo*60) -50
       // works
@@ -285,28 +288,37 @@ export function initScene(albumPath, midiData) {
   var audio = document.querySelector("#audio-player")
 
   function startMusic() {
+    audio.playBackRate = 1;
     audio.play();
-    gameStart = true;
+    // gameStart = true;
   }
 
 
-export function startGame(albumPath, midiData) {
+export function startGame(albumPath, midiData, delay) {
   $('.main-menu').hide()
 
-  initScene(albumPath, midiData);
+
+  initScene(albumPath, midiData, delay);
   
-  // setTimeout(function(){startMusic()}, 4500);
-  // setTimeout(function(){startMusic()}, 500);
   gameStart = true;
-  // setTimeout(function(){startMusic()}, 1500); works for starry eyed
-  setTimeout(function(){startMusic()},500); 
-  // startMusic()
+  
+
+  setTimeout(function(){startMusic()}, delay); 
+ 
+  // starryEyed
+    // setTimeout(function(){startMusic()}, delay); 
+    
+    // //juliet
+    // setTimeout(function(){startMusic()}, 1000); 
+    // // startMusic()
+    
+}
 
   audio.onended = function(){
     gameStart = false;
     $('.end-menu').show()
   }
-}
+
 
 
 window.addEventListener('blur', function(){
@@ -373,6 +385,12 @@ export function stopGame(){
   //   }
   // }
 
+
+
+
+
+
+
   function animate() {
     skybox.rotation.x -= 0.0008;
     // skybox.rotation.y += 0.001;
@@ -380,7 +398,7 @@ export function stopGame(){
     starField.rotation.y -= 0.001;
     starField.rotation.z += 0.0008;
   
-    
+  
 
     if (gameStart === true) {
       album.rotation.x -= 0.001;
@@ -393,8 +411,10 @@ export function stopGame(){
         let block = midiBlocks[i]
         // debugger
         // block.position.z -= 10
-        block.position.z -= tempo
-        // block.position.z -= ppq
+        // block.position.z -= bpm
+        block.position.z -= ppq
+
+      
 
         var originPoint = block.position
     
@@ -428,15 +448,20 @@ export function stopGame(){
       requestAnimationFrame(animate);
       renderer.render(scene,camera);
    
+      
+    //   setTimeout( function() {
 
-    // setTimeout( function() {
+    //     requestAnimationFrame( animate );
 
-    //   requestAnimationFrame( animate );
+    // }, 1000 / 60 );
 
-    // }, 5);
 
     // renderer.render(scene,camera);
+       
+    
   }
+
+
 
   
 // init();
@@ -593,7 +618,9 @@ function toggleFullScreen(){
       if (eventType === 'press' && e.keyCode !== 27) {
         if (collidable[receptor].active === true) {
           btns[btn].material.emissive.set(btnOnColor)
+          updateScore(50)
         }
+
 
         btns[btn].position.y = 10
         chars[char].position.y = 25
@@ -618,3 +645,20 @@ window.addEventListener('resize', () => {
   camera.aspect = window.innerWidth / window.innerHeight;
   camera.updateProjectionMatrix();
 })
+
+
+// document.getElementById('score').addEventListener('click', function(e){
+//   e.preventDefault()
+//   updateScore(50)})
+
+
+function updateScore(amt){
+  var scoreDiv = $(document.getElementById('score'))
+  var endScoreDiv = $(document.getElementById('end-score'))
+
+  score = score + amt
+  
+
+  $(scoreDiv).text(`${score}`)
+  $(endScoreDiv).text(`${score}`)
+}
