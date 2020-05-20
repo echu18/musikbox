@@ -235,14 +235,20 @@ export function initScene(albumPath, midiData) {
       // cube.position.z= 1500; // Position z to make cube front and back
       // cube.position.z= 1500; // Position z to make cube front and back
      
-      // cube.position.z = 0 + (midiNotes[i].time * (ppq * 60)) -2910*.96
-      // cube.position.z = (midiNotes[i].time * tempo * bpm * 60)
-      // cube.position.z = ((midiNotes[0].time * -(bpm * 10) ) + (midiNotes[i].time * (ppq * 60)) ) 
+      // cube.position.z = 0 + (midiNotes[i].time * (ppq * 60 * (bpm/100)))
+      // cube.position.z = (midiNotes[i].time * tempo * 122)
+      // cube.position.z = (midiNotes[0].time * bpm * 1.2) + (midiNotes[i].time * bpm * 1.2) 
 
 
       //works -starry- juliet - isitlove
+      // cube.position.z = ((midiNotes[0].time * -bpm)) + (midiNotes[i].time
+
+      // if (i===0) {
+      //   cube.position.z = ((midiNotes[0].time * -bpm)) + (midiNotes[i].time * (bpm * 6))
+      // } else {
+      //   cube.position.z = ((midiNotes[0].time * -bpm)) + (midiNotes[i].time * (bpm * 6)) - ((midiNotes[i].time- midiNotes[i-1].time) * 100)
+      // }
       cube.position.z = ((midiNotes[0].time * -bpm)) + (midiNotes[i].time * (ppq * 60))
-      // cube.position.z = ((midiNotes[0].time * -bpm)) + (midiNotes[i].time * (ppq * 60))
 
 
 
@@ -378,28 +384,6 @@ export function stopGame(){
 
 
 
-
-  
-
-  // function togglePause(e) {
-  //   e.preventDefault();
-  //   if (e.keyCode === 27) {
-  //     if (audio.pause) {
-  //       gameStart = true;
-  //       audio.play();
-  //     } else {
-  //       gameStart = 'pause'
-  //       audio.pause()
-  //     }
-  //   }
-  // }
-
-
-
-
-
-
-
   function animate() {
     skybox.rotation.x -= 0.0008;
     // skybox.rotation.y += 0.001;
@@ -420,8 +404,8 @@ export function stopGame(){
         let block = midiBlocks[i]
         // debugger
         // block.position.z -= 10
-        // block.position.z -= bpm/10
-        block.position.z -= ppq
+        // block.position.z -= 12.2
+        block.position.z -= ppq 
 
       
 
@@ -454,18 +438,18 @@ export function stopGame(){
         } 
       } 
 
-      requestAnimationFrame(animate);
-      renderer.render(scene,camera);
+      // requestAnimationFrame(animate);
+      // renderer.render(scene,camera);
    
       
-    //   setTimeout( function() {
+      setTimeout( function() {
 
-    //     requestAnimationFrame( animate );
+        requestAnimationFrame( animate );
 
-    // }, 1000 / 60 );
+    }, 1000 / 120 );
 
 
-    // renderer.render(scene,camera);
+    renderer.render(scene,camera);
        
     
   }

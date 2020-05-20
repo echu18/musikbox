@@ -10,8 +10,8 @@
     height: 700px;
     width: 1200px;
     background: rgba(31, 7, 99, 0.9);
-    /* border-radius: 15px;
-    z-index: 1000; */
+    /* border-radius: 15px;*/
+    z-index: 1000; 
     padding: 20px;
     color: whitesmoke;
     border: 5px solid whitesmoke;
@@ -295,8 +295,8 @@
 
   #volume-btn {
     position: absolute;
-    right: 5px;
-    top: 5px;
+    right: 0;
+    top: 0;
     margin: 0;
   }
 

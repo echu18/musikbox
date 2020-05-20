@@ -20,13 +20,13 @@ export function selectTrack(songName){
             albumPath =  'images/ellie/posx.jpg';
             midiData = starryEyed;
             audioPath = 'audio/starry-eyed/starry-eyed-nodrums.mp3'
-            delay = 1250;
+            delay = 1300;
             break;
         case 'juliet-romeo':
             albumPath = 'images/juliet-romeo.jpg'
             midiData = julietRomeo;
             audioPath = 'audio/songs-arcade/juliet-romeo.mp3';
-            delay = 3700;
+            delay = 0;
             break;
         case 'is-it-love':
             albumPath = 'images/3lau.jpg'
