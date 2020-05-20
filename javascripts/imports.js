@@ -26,13 +26,13 @@ export function selectTrack(songName){
             albumPath = 'images/juliet-romeo.jpg'
             midiData = julietRomeo;
             audioPath = 'audio/songs-arcade/juliet-romeo.mp3';
-            delay = 3200;
+            delay = 3700;
             break;
         case 'is-it-love':
             albumPath = 'images/3lau.jpg'
             midiData = isItLove;
             audioPath = 'audio/songs-arcade/is-it-love.mp3';
-            delay = 5500;
+            delay = 0;
             break;
     }
 

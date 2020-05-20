@@ -1,8 +1,12 @@
 import {stopGame} from './main.js'
 
 // Init
-$('.pause-menu').hide()
-$('.end-menu').hide()
+// $('.pause-menu').hide()
+// $('.end-menu').hide()
+
+
+$('.pause-menu').css("display", "flex").hide()
+$('.end-menu').css("display", "flex").hide()
 
 
 
@@ -29,7 +33,19 @@ document.querySelectorAll('.back-to-main-btn').forEach(btn => btn.addEventListen
      } else {
         $('.pause-menu').show()
      }
-    
  }
+
+
+
+
+//  for testing end menu
+//  export function togglePauseMenu(){
+//     if ($('.end-menu').is(":visible"
+//     )){
+//        $('.end-menu').hide()
+//     } else {
+//        $('.end-menu').show()
+//     }
+// }
 
 

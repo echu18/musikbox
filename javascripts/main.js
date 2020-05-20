@@ -21,7 +21,7 @@ export function initScene(albumPath, midiData) {
   midiNotes = midiData.tracks[0].notes;
 
   ppq =  midiData.header.ppq/10
-  bpm =  midiData.header.bpm/10
+  bpm =  midiData.header.bpm
   tempo =  midiData.header.bpm/60
 
 
@@ -232,14 +232,22 @@ export function initScene(albumPath, midiData) {
 
 
       
-      var speed = 60 * tempo
       // cube.position.z= 1500; // Position z to make cube front and back
       // cube.position.z= 1500; // Position z to make cube front and back
      
       // cube.position.z = 0 + (midiNotes[i].time * (ppq * 60)) -2910*.96
       // cube.position.z = (midiNotes[i].time * tempo * bpm * 60)
       // cube.position.z = ((midiNotes[0].time * -(bpm * 10) ) + (midiNotes[i].time * (ppq * 60)) ) 
-      cube.position.z = ((midiNotes[0].time * -150)) + (midiNotes[i].time * (ppq * 60))
+
+
+      //works -starry- juliet - isitlove
+      cube.position.z = ((midiNotes[0].time * -bpm)) + (midiNotes[i].time * (ppq * 60))
+      // cube.position.z = ((midiNotes[0].time * -bpm)) + (midiNotes[i].time * (ppq * 60))
+
+
+
+
+
       // cube.position.z =  (midiNotes[i].time * (tempo * 60)) - 1000
       // cube.position.z = (midiNotes[i].time * 732) -2910
       // cube.position.z = (midiNotes[i].time * 930) -2910
@@ -272,14 +280,14 @@ export function initScene(albumPath, midiData) {
 
     // Grid
 
-  var size = 2700;
-  var divisions = 8;
-  var colorGrid = new THREE.Color("hsl(260, 81%, 86%)")
+  // var size = 2700;
+  // var divisions = 8;
+  // var colorGrid = new THREE.Color("hsl(260, 81%, 86%)")
   
-  var gridHelper = new THREE.GridHelper(size, divisions, colorGrid  );
-  // gridHelper.scale.set(2700, 10, 6000)
-  gridHelper.position.z = -1500;
-  scene.add( gridHelper );
+  // var gridHelper = new THREE.GridHelper(size, divisions, colorGrid  );
+  // // gridHelper.scale.set(2700, 10, 6000)
+  // gridHelper.position.z = -1500;
+  // scene.add( gridHelper );
   animate()
 }
 
@@ -296,6 +304,7 @@ export function initScene(albumPath, midiData) {
 
 export function startGame(albumPath, midiData, delay) {
   $('.main-menu').hide()
+  $('#score-container').css("visibility", "visible")
 
 
   initScene(albumPath, midiData, delay);
@@ -411,7 +420,7 @@ export function stopGame(){
         let block = midiBlocks[i]
         // debugger
         // block.position.z -= 10
-        // block.position.z -= bpm
+        // block.position.z -= bpm/10
         block.position.z -= ppq
 
       

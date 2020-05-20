@@ -10,23 +10,45 @@
     height: 700px;
     width: 1200px;
     background: rgba(31, 7, 99, 0.9);
-    border-radius: 15px;
-    z-index: 1000;
+    /* border-radius: 15px;
+    z-index: 1000; */
     padding: 20px;
     color: whitesmoke;
     border: 5px solid whitesmoke;
 }
 
-.pause-menu, .end-menu {
+.end-menu {
     display: none;
+}
+
+.pause-menu, .end-menu{
+    height: 500px;
+    width: 800px;
+    font-family: 'Helvetica', sans-serif;
+    font-size: 36px;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(60deg, #f79533, #f37055, #ef4e7b, #a166ab, #5073b8, #1098ad, #07b39b, #6fba82);
+    border-radius: 5px;
+    animation: animatedgradient 20s ease alternate infinite;
+}
+
+
+.pause-menu > button, .end-menu > button {
+    height: 30px;
+    border-radius: 3px;
+    padding: 2px 3px 2px 3px;
+    border-style: none;
+    background-color: white;
 }
 
 
 
 
-
-
 .main-menu {
+    height: 700px;
+    width: 1200px;
     --borderWidth: 3px;
     background: #1D1F20;
     /* position: relative; */
@@ -81,13 +103,15 @@
 
 
 
-
-
-.main-menu > h3 {
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 120px;
-    margin: 0px;
-}
+  
+  .main-menu > h3 {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 120px;
+      margin: 20px 0px 0px 0px;
+  }
+  .main-menu > h4 {
+      font-size: 22px;
+  }
 
 
 .album-art > img {
@@ -278,8 +302,8 @@
 
 
 
-.score-container{
-    /* visibility: hidden; */
+#score-container{
+    visibility: hidden;
     position: absolute;
     top: 0;
     right: 5%;
@@ -295,6 +319,8 @@
     -moz-background-clip: text;
     -webkit-text-fill-color: transparent; 
     -moz-text-fill-color: transparent;
+    animation: animatedgradient 3s ease alternate infinite;
+
 
 }
 
