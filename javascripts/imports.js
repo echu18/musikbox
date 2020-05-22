@@ -20,7 +20,7 @@ export function selectTrack(songName){
             albumPath =  'images/ellie/posx.jpg';
             midiData = starryEyed;
             audioPath = 'audio/starry-eyed/starry-eyed-nodrums.mp3'
-            delay = 1300;
+            delay = 1350;
             break;
         case 'juliet-romeo':
             albumPath = 'images/juliet-romeo.jpg'
