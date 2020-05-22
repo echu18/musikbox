@@ -43,6 +43,18 @@
     background-color: white;
 }
 
+.back-to-main-btn {
+    /* position: absolute; */
+    font-size: 20px;
+    /* right: 5px; */
+    /* bottom: 5px; */
+    margin: 0;
+    padding: 5px 10px;
+    
+    border: 3px solid whitesmoke;
+    border-radius: 5px;
+}
+
 
 
 
@@ -281,16 +293,28 @@
 
   #start-btn {
     position: absolute;
+    font-size: 20px;
     right: 5px;
     bottom: 5px;
     margin: 0;
+    padding: 5px 10px;
+    
+    border: 3px solid whitesmoke;
+    border-radius: 5px;
   }
 
-  #help-btn {
+  
+  #start-btn:hover, 
+  .fa-volume-up:hover, .back-to-main-btn:hover {
+      cursor: pointer;
+  }
+
+  .fa-question-circle {
     position: absolute;
     left: 5px;
     bottom: 5px;
-    margin: 0;
+    margin: 20px;
+    transform: scale(3.5);
   }
 
 
@@ -299,18 +323,14 @@
     position: absolute;
     right: 0;
     top: 0;
-    margin: 20px;
+    margin: 20px 10px 0px 0px;
   }
 
   .fa-volume-up {
     margin-right: 15px;
-    transform: scale(3);
+    transform: scale(3.5);
   }
 
-
-  .fa-volume-up:hover {
-      cursor: pointer;
-  } 
 
 #score-container{
     visibility: hidden;
@@ -335,7 +355,6 @@
 
 
 .slider {
-
     display: none;
     -webkit-appearance: none;  /* Override default CSS styles */
     appearance: none;
