@@ -1,4 +1,4 @@
-.main-menu, .pause-menu, .end-menu {
+.main-menu, .pause-menu, .end-menu, .help-menu {
     position: fixed;
     top: 50%;
     left: 50%;
@@ -9,12 +9,17 @@
     flex-direction: column;
     height: 700px;
     width: 1200px;
-    background: rgba(31, 7, 99, 0.9);
+    background: rgba(31, 7, 99, 0.95);
     /* border-radius: 15px;*/
     z-index: 1000; 
     padding: 20px;
     color: whitesmoke;
     border: 5px solid whitesmoke;
+}
+
+
+.help-menu > h3 {
+    font-size: 30px;
 }
 
 .end-menu {
@@ -43,7 +48,7 @@
     background-color: white;
 }
 
-.back-to-main-btn {
+.back-to-main-btn, .close-help-btn {
     /* position: absolute; */
     font-size: 20px;
     /* right: 5px; */
@@ -305,7 +310,7 @@
 
   
   #start-btn:hover, 
-  .fa-volume-up:hover, .back-to-main-btn:hover {
+  .fa-volume-up:hover, .back-to-main-btn:hover, .fa-question-circle:hover, .close-help-btn {
       cursor: pointer;
   }
 
@@ -385,3 +390,52 @@
     cursor: pointer; /* Cursor on hover */
   }
   
+
+
+
+
+  .help-menu {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+  }
+
+  .help-menu > h3 {
+      justify-self: center;
+      margin: 0;
+  }
+
+  .help-menu > div {
+      width: 100%;
+      height: 70px;
+      font-size: 24px;
+      display: flex;
+      margin: 50px 0px 50px 0px;
+  }
+
+  .additional-controls{
+      display: flex;
+      flex-direction: column;
+  }
+
+
+  .additional-controls > h4 {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+    .additional-controls > p {
+        font-size: 16px;
+        margin: 0;
+  }
+
+  .help-img {
+      height: 150px; 
+      width: 300px;
+      object-fit: cover;
+      margin-right: 20px;
+      border-radius: 3px;
+  }
+
+  .close-help-btn {
+      margin-top: -50px;
+  }

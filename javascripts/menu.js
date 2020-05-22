@@ -6,6 +6,7 @@ import {stopGame} from './main.js'
 
 
 $('.pause-menu').css("display", "flex").hide()
+$('.help-menu').css("display", "flex").hide()
 $('.end-menu').css("display", "flex").hide()
 
 
@@ -17,6 +18,12 @@ document.querySelectorAll('.back-to-main-btn').forEach(btn => btn.addEventListen
     })
 )
 
+document.getElementsByClassName('close-help-btn')[0].addEventListener('click', 
+
+function(e){
+    e.preventDefault()
+    $('.help-menu').hide()
+})
 
 // End menu
  export function backToMainMenu(){
@@ -24,8 +31,8 @@ document.querySelectorAll('.back-to-main-btn').forEach(btn => btn.addEventListen
         $('.pause-menu').hide()
         $('.end-menu').hide()
         $('.main-menu').show()
- }
-
+}
+    
  export function togglePauseMenu(){
      if ($('.pause-menu').is(":visible"
      )){
@@ -34,6 +41,15 @@ document.querySelectorAll('.back-to-main-btn').forEach(btn => btn.addEventListen
         $('.pause-menu').show()
      }
  }
+
+
+
+ var helpBtn = document.getElementsByClassName('fa-question-circle')[0]
+ helpBtn.addEventListener('click', function(){
+     var helpMenu = $(document.getElementsByClassName('help-menu')[0])
+     console.log('hi')
+     helpMenu.toggle()
+ })
 
 
 
