@@ -9,7 +9,11 @@
   <script src='javascripts/three/three.js'></script>
   <script src='javascripts/three/OrbitControls.js'></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-  <!-- <script  type='module' src='javascripts/carousel.js'></script> -->
+   <!-- <script  type='module' src='javascripts/carousel.js'></script> -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 
 
   <!-- <script src='javascripts/three/three.min.js'></script> -->
@@ -28,12 +32,27 @@
       <button id='start-btn'>Start</button>
 
       <button id='help-btn'>??</button>
-      <button id='volume-btn'>volume adjust</button>
+
+
+
+      <div class="volume-container">
+      <i class="fa fa-volume-up"></i>
+
+
+        <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+      </div>
+
+
+      <!-- <button id='volume-btn'>volume adjust 
+
+
+      </button>
+     -->
 
       
       <h3>MUSIKBOX</h3>
 
-      <h4>To begin, choose a song:</h4>
+      <h4>To preview, click on the album:</h4>
 
 
         <div id='song-carousel'>

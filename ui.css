@@ -293,14 +293,24 @@
     margin: 0;
   }
 
-  #volume-btn {
+
+
+  .volume-container {
     position: absolute;
     right: 0;
     top: 0;
-    margin: 0;
+    margin: 20px;
+  }
+
+  .fa-volume-up {
+    margin-right: 15px;
+    transform: scale(3);
   }
 
 
+  .fa-volume-up:hover {
+      cursor: pointer;
+  } 
 
 #score-container{
     visibility: hidden;
@@ -320,10 +330,39 @@
     -webkit-text-fill-color: transparent; 
     -moz-text-fill-color: transparent;
     animation: animatedgradient 3s ease alternate infinite;
-
-
 }
 
-/* .score{
 
-} */
+
+.slider {
+
+    display: none;
+    -webkit-appearance: none;  /* Override default CSS styles */
+    appearance: none;
+    width: 100px; /* Full-width */
+    height: 10px; /* Specified height */
+    background: #d3d3d3; /* Grey background */
+    outline: none; /* Remove outline */
+    opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+    -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+    transition: opacity .2s;
+    border-radius: 3px;
+  }
+  
+  /* Mouse-over effects */
+  .slider:hover {
+    opacity: 1; /* Fully shown on mouse-over */
+  }
+  
+  /* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+  .slider::-webkit-slider-thumb {
+    -webkit-appearance: none; /* Override default look */
+    appearance: none;
+    width: 25px; /* Set a specific slider handle width */
+    height: 25px; /* Slider handle height */
+    background:  whitesmoke;
+
+    border-radius: 50%;
+    cursor: pointer; /* Cursor on hover */
+  }
+  

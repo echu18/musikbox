@@ -12,23 +12,42 @@ var currentIdx = currentIdx || Math.floor(songs.length/2);
 var audioPreview = document.getElementById('audio-preview')
 
 
+var slider = document.getElementById("myRange");
+var audioPreview = document.getElementById("audio-preview");
+
+// Update the current slider value (each time you drag the slider handle)
+slider.oninput = function() {
+    audioPreview.volume = this.value/100;
+}
+
+
+var volume = document.getElementsByClassName('fa-volume-up')[0]
+volume.addEventListener('click', function(){
+    var slider = $(document.getElementsByClassName('slider')[0])
+    slider.toggle()
+})
+
+
+
+
 updateCarousel();
 
 $('.album-art').on('click', 'img', function(event) {
     event.preventDefault();
-
+    
     if (!!audioPreview) audioPreview.pause()
     
     songs.forEach(song => $(song).removeClass("rotate-left-album centered-album rotate-right-album"))
-
+    
     var currentSong = $(this).closest("div")
     currentIdx = songs.indexOf(currentSong[0])
-
-
+    
+    
     var previewName = songNodes[currentIdx].dataset.songSelect
     $(audioPreview).attr("src", 'audio/previews/' + previewName + '-preview.wav')
     
-    audioPreview.volume = 0.9
+    audioPreview.volume = slider.value/100; // Display the default slider value
+    // audioPreview.volume = 0.9
     audioPreview.play()
 
     updateCarousel();
