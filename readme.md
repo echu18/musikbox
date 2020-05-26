@@ -5,7 +5,7 @@
 [Musikbox](https://www.echu18.github.io) is an interactive JavaScript game where users can use their keyboard to jam out, live, to music. It was inspired by the likes of Synthesia and Guitar Hero. Although the game has a simple scoring system, the main objective of this application is to allow users to have fun while playing music, live.
 <br/>
 
-![Musikbox Main Menu](https://ec-storage.s3-us-west-1.amazonaws.com/main-menu2.JPG)
+![Musikbox Main Menu](https://ec-storage.s3-us-west-1.amazonaws.com/main-menu2.png)
 
 
 
@@ -34,7 +34,7 @@ Songs are displayed as albums in an album carousel which sits center in the main
 <br/>
 ![Musikbox Main Menu](https://ec-storage.s3-us-west-1.amazonaws.com/main-menu1.png)
 
-![Musikbox Help Menu](https://ec-storage.s3-us-west-1.amazonaws.com/help-menu.JPG)
+![Musikbox Help Menu](https://ec-storage.s3-us-west-1.amazonaws.com/help-menu.png)
 
 
 
@@ -47,6 +47,7 @@ The game screen was constructed entirely from Three.js. The controller at the bo
 <br/>
 In the center of the game screen, the album cover for the current song is displayed as a cube, rotating when the song plays.
 I mapped drum sounds to each of the corresponding keys on the keyboard controller, so that users can experience playing the music 'live', as if they were actually drumming to the song. I found stems for "Starry Eyed" and deconstructed the song using Ableton, picking out each individual drum sample and using that to create a corresponding midi file I could use in my project. I exported the song (without the drums) for use as a backing track to the game, and then exported the midi notes for the drum part as a separate file.
+
 <br/>
 ![Musikbox Game View](https://ec-storage.s3-us-west-1.amazonaws.com/game-view.png)
 <br/>
@@ -107,25 +108,24 @@ Although Tone.js is an entire framework for interacting with and creating music,
 The game automatically begins when the user is taken to this screen. When the music begins, colorful bars indicating midi notes float down the screen from the album art cube down to the keyboard controller. When the bar hits the pink receptor of the controller, the user is supposed to press the corresponding key.
 
 <br/>
-![Musikbox Receptor](https://ec-storage.s3-us-west-1.amazonaws.com/wip-receptor.jpg)
+![Musikbox Receptor](https://ec-storage.s3-us-west-1.amazonaws.com/wip-receptor.png)
 <br/>
 
 
 When the key is pressed, its corresponding drum sample sound will play regardless of timing. But the key will only light up (change color) when the key is pressed on the correct note at the right time. 
 
-<br/>
-![Musikbox Button Press](https://ec-storage.s3-us-west-1.amazonaws.com/howto.JPG)
-<br/>
+![Musikbox Button Press](https://ec-storage.s3-us-west-1.amazonaws.com/howto2.png)
+
+
+![Musikbox Button Light Up](https://ec-storage.s3-us-west-1.amazonaws.com/lightup.png)
+
 
 <br/>
-![Musikbox Button Light Up](https://ec-storage.s3-us-west-1.amazonaws.com/lightup.jpg)
-<br/>
-
 The scoring system is simple and only takes into account whether or not the correct key was pressed when the colorful bar has reached the receptor.
+<br/>
+<br/>
 
-<br/>
-![Musikbox Score](https://ec-storage.s3-us-west-1.amazonaws.com/score.jpg)
-<br/>
-<br/>
+![Musikbox Score](https://ec-storage.s3-us-west-1.amazonaws.com/score.png)
+
 
 
