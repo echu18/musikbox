@@ -49,6 +49,7 @@ In the center of the game screen, the album cover for the current song is displa
 I mapped drum sounds to each of the corresponding keys on the keyboard controller, so that users can experience playing the music 'live', as if they were actually drumming to the song. I found stems for "Starry Eyed" and deconstructed the song using Ableton, picking out each individual drum sample and using that to create a corresponding midi file I could use in my project. I exported the song (without the drums) for use as a backing track to the game, and then exported the midi notes for the drum part as a separate file.
 <br/>
 ![Musikbox Game View](https://ec-storage.s3-us-west-1.amazonaws.com/game-view.png)
+<br/>
 
 
 <br/>
@@ -106,13 +107,14 @@ Although Tone.js is an entire framework for interacting with and creating music,
 The game automatically begins when the user is taken to this screen. When the music begins, colorful bars indicating midi notes float down the screen from the album art cube down to the keyboard controller. When the bar hits the pink receptor of the controller, the user is supposed to press the corresponding key.
 
 <br/>
-![Musikbox Receptor WIP](https://ec-storage.s3-us-west-1.amazonaws.com/wip-receptor.jpg)
+![Musikbox Receptor](https://ec-storage.s3-us-west-1.amazonaws.com/wip-receptor.jpg)
 <br/>
+
 
 When the key is pressed, its corresponding drum sample sound will play regardless of timing. But the key will only light up (change color) when the key is pressed on the correct note at the right time. 
 
 <br/>
-![Musikbox Button Press](https://ec-storage.s3-us-west-1.amazonaws.com/howto.jpg)
+![Musikbox Button Press](https://ec-storage.s3-us-west-1.amazonaws.com/howto.JPG)
 <br/>
 
 <br/>
