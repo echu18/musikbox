@@ -2,7 +2,7 @@
 
 
 
-[Musikbox](https://www.echu18.github.io) is an interactive JavaScript game where users can use their keyboard to jam out, live, to music. It was inspired by the likes of Synthesia and Guitar Hero. Although the game has a simple scoring system, the main objective of this application is to allow users to have fun while playing music, live.
+[Musikbox](https://echu18.github.io/musikbox/) is an interactive JavaScript game where users can use their keyboard to jam out, live, to music. It was inspired by the likes of Synthesia and Guitar Hero. Although the game has a simple scoring system, the main objective of this application is to allow users to have fun while playing music, live.
 <br/>
 
 ![Musikbox Main Menu](https://ec-storage.s3-us-west-1.amazonaws.com/main-menu2.png)
